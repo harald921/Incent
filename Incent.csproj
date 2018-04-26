@@ -236,8 +236,10 @@
     <Compile Include="Assets\Code\Terrain\ChunkGenerator.cs" />
     <Compile Include="Assets\Code\Terrain\Noise.cs" />
     <Compile Include="Assets\Code\Terrain\Terrain.cs" />
+    <Compile Include="Assets\Code\Terrain\TerrainGenerator.cs" />
     <Compile Include="Assets\Code\Terrain\Tile.cs" />
-    <Compile Include="Assets\Code\Terrain\World.cs" />
+    <Compile Include="Assets\Code\Terrain\WorldChunkManager.cs" />
+    <Compile Include="Assets\Code\Vector2DInt.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

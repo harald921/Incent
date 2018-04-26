@@ -20,9 +20,9 @@ public class ChunkGenerator
     }
 
 
-    public Chunk GenerateChunk(Vector2Int inPosition)
+    public Chunk GenerateChunk(Vector2DInt inPosition)
     {
-        Chunk.Data chunkData = _dataGenerator.Generate(inPosition);
+        ChunkData  chunkData = _dataGenerator.Generate(inPosition);
         GameObject chunkView = _viewGenerator.Generate(inPosition, chunkData);
 
         Chunk newChunk = new Chunk(inPosition, chunkData, chunkView);
@@ -43,26 +43,25 @@ public class ChunkGenerator
         }
 
 
-        public Chunk.Data Generate(Vector2Int inPosition)
+        public ChunkData Generate(Vector2DInt inPosition)
         {
-            Chunk.Data newChunkData = new Chunk.Data();
+            ChunkData newChunkData = new ChunkData();
 
             newChunkData.SetTiles(GenerateTiles(inPosition, GenerateNoiseMap(inPosition)));
 
             return newChunkData;
         }
 
-        float[,] GenerateNoiseMap(Vector2Int inOffset) => 
+        float[,] GenerateNoiseMap(Vector2DInt inOffset) => 
             Noise.Generate((uint)_chunkSize, _noiseParamters[0], inOffset);
 
-        Tile[,] GenerateTiles(Vector2Int inChunkPos, float[,] inNoiseData)
+        Tile[,] GenerateTiles(Vector2DInt inChunkPos, float[,] inNoiseData)
         {
             Tile[,] newTiles = new Tile[_chunkSize, _chunkSize];
 
-            // TODO: Implementera detta
-            // for (int y = 0; y < _chunkSize; y++)
-            //     for (int x = 0; x < _chunkSize; x++)
-            //         newTiles[x, y] = new Tile(new Vector2Int(x, y), inChunkPos, TerrainGenerator.GetTerrain(inNoiseData.heightMap[x, y]));
+            for (int y = 0; y < _chunkSize; y++)
+                for (int x = 0; x < _chunkSize; x++)
+                    newTiles[x, y] = new Tile(new Vector2DInt(x, y), inChunkPos, TerrainGenerator.GetTerrain(inNoiseData[x, y]));
 
             return newTiles;
         }
@@ -95,7 +94,7 @@ public class ChunkGenerator
             _triangles = GenerateTriangleIDs();
         }
 
-        public GameObject Generate(Vector2Int inPosition, Chunk.Data inChunkData)
+        public GameObject Generate(Vector2DInt inPosition, ChunkData inChunkData)
         {
             GameObject viewGO = GenerateGO(inPosition);
 
@@ -104,7 +103,7 @@ public class ChunkGenerator
             return viewGO;
         }
 
-        GameObject GenerateGO(Vector2Int inPosition)
+        GameObject GenerateGO(Vector2DInt inPosition)
         {
             GameObject newChunkGO = new GameObject("Chunk");
 
@@ -171,7 +170,7 @@ public class ChunkGenerator
             return vertices;
         }
 
-        Vector2[] GenerateUV2(Chunk.Data inChunkData)
+        Vector2[] GenerateUV2(ChunkData inChunkData)
         {
             Vector2[] newUV2s = new Vector2[_vertexCount];
             int vertexID = 0;
@@ -179,15 +178,14 @@ public class ChunkGenerator
             {
                 for (int x = 0; x < _chunkSize; x++)
                 {
-                    // TODO: Implementera
 
-                    // int tileTextureID = inChunkData.GetTile(new Vector2Int(x, y)).terrain.data.textureID;
-                    // 
-                    // newUV2s[vertexID + 0] = new Vector2(tileTextureID, tileTextureID);
-                    // newUV2s[vertexID + 1] = new Vector2(tileTextureID, tileTextureID);
-                    // newUV2s[vertexID + _vertexSize + 0] = new Vector2(tileTextureID, tileTextureID);
-                    // newUV2s[vertexID + _vertexSize + 1] = new Vector2(tileTextureID, tileTextureID);
-                    // 
+                    int tileTextureID = inChunkData.GetTile(new Vector2DInt(x, y)).terrain.data.textureID;
+                    
+                    newUV2s[vertexID + 0] = new Vector2(tileTextureID, tileTextureID);
+                    newUV2s[vertexID + 1] = new Vector2(tileTextureID, tileTextureID);
+                    newUV2s[vertexID + _vertexSize + 0] = new Vector2(tileTextureID, tileTextureID);
+                    newUV2s[vertexID + _vertexSize + 1] = new Vector2(tileTextureID, tileTextureID);
+                    
                     vertexID += 2;
                 }
                 vertexID += _vertexSize;

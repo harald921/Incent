@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Noise
 {
-    public static float[,] Generate(uint inSize, Parameters inParameters, Vector2Int inOffset)
+    public static float[,] Generate(uint inSize, Parameters inParameters, Vector2DInt inOffset)
     {
         // TODO: Find a perlin noise lib and use it
 

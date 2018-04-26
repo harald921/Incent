@@ -7,22 +7,21 @@ using UnityEngine;
 
 public class Tile
 {
-    public readonly Vector2Int localPosition; // The chunk position of the tile
-    public readonly Vector2Int chunkPosition; // The world position of the chunk
-    // public readonly Vector2Int worldPosition;
+    public readonly Vector2DInt localPosition; // The chunk position of the tile
+    public readonly Vector2DInt chunkPosition; // The world position of the chunk
+    public readonly Vector2DInt worldPosition;
 
-    Terrain _terrain;
+    readonly public Terrain terrain;
 
-
-    public Tile(Vector2Int inLocalPosition, Vector2Int inChunkPosition, Terrain inTerrain)
+    public Tile(Vector2DInt inLocalPosition, Vector2DInt inChunkPosition, Terrain inTerrain)
     {
         localPosition = inLocalPosition;
         chunkPosition = inChunkPosition;
-       //  worldPosition = localPosition + (chunkPosition * Constants.TerrainGeneration.CHUNK_SIZE);
+        worldPosition = localPosition + (chunkPosition * 64); // TODO: Read from file ONCE
 
-        _terrain = inTerrain;
+        terrain = inTerrain;
     }
 
-    // public Tile GetNearbyTile(Vector2Int inDirection) =>
+    // public Tile GetNearbyTile(Vector2DInt inDirection) =>
     //     World.instance.chunkManager.GetTile(worldPosition + inDirection);
 }
