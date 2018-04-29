@@ -107,7 +107,8 @@ public class ChunkGenerator
         {
             GameObject newChunkGO = new GameObject("Chunk");
 
-            MeshFilter meshFilter = newChunkGO.AddComponent<MeshFilter>();
+            newChunkGO.AddComponent<MeshFilter>();
+
             MeshRenderer meshRenderer = newChunkGO.AddComponent<MeshRenderer>();
 
             meshRenderer.material = _chunkMaterial;

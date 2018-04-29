@@ -311,6 +311,7 @@
     <Compile Include="Assets\Code\Terrain\TerrainGenerator.cs" />
     <Compile Include="Assets\Code\Terrain\Tile.cs" />
     <Compile Include="Assets\Code\Terrain\WorldChunkManager.cs" />
+    <Compile Include="Assets\Code\Texture2DArrayWizard.cs" />
     <Compile Include="Assets\Code\Vector2DInt.cs" />
   </ItemGroup>
   <ItemGroup>
