@@ -24,6 +24,18 @@ public struct Vector2DInt
     public override string ToString() =>
         "(" + x + ", " + y + ")";
 
+    public override bool Equals(object obj)
+    {
+        if (obj is Vector2DInt)
+        {
+            Vector2DInt objAsVector2DInt = (Vector2DInt)obj;
+            if (x == objAsVector2DInt.x &&
+                y == objAsVector2DInt.y)
+                return true;
+        }
+
+        return false;
+    }
 
     public static Vector2DInt operator +(Vector2DInt inVector1, Vector2DInt inVector2) =>
         new Vector2DInt()
