@@ -13,7 +13,7 @@ public class ChunkGenerator
 
     public ChunkGenerator(Noise.Parameters[] inNoiseParameters)
     {
-        _chunkSize = 64; // TODO: Read from file
+        _chunkSize = Constants.Terrain.CHUNK_SIZE; // TODO: Read from file
 
         _dataGenerator = new DataGenerator(inNoiseParameters);
         _viewGenerator = new ViewGenerator();

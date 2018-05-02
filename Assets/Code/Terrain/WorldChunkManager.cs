@@ -18,10 +18,10 @@ public class WorldChunkManager : MonoBehaviour
 
 
     public static Vector2DInt WorldPosToChunkPos(Vector2DInt inWorldPosition) =>
-        inWorldPosition / 64;
+        inWorldPosition / Constants.Terrain.CHUNK_SIZE;
 
     public static Vector2DInt WorldPosToLocalTilePos(Vector2DInt inWorldPosition) =>
-        inWorldPosition % 64;
+        inWorldPosition % Constants.Terrain.CHUNK_SIZE;
 
 
     public Chunk GetChunk(Vector2DInt inChunkPos) => _chunks[inChunkPos];
