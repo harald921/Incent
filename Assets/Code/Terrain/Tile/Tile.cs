@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class Tile
+public struct Tile
 {
     public readonly Vector2DInt localPosition; // The chunk position of the tile
     public readonly Vector2DInt chunkPosition; // The world position of the chunk
@@ -17,7 +17,7 @@ public class Tile
     {
         localPosition = inLocalPosition;
         chunkPosition = inChunkPosition;
-        worldPosition = localPosition + (chunkPosition * 64); // TODO: Read from file ONCE
+        worldPosition = localPosition + (chunkPosition * Constants.Terrain.CHUNK_SIZE); // TODO: Read from file ONCE
 
         terrain = inTerrain;
     }

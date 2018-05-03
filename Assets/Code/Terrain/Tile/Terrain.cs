@@ -12,13 +12,13 @@ public struct Terrain
         { TerrainType.Sand,  new TerrainData(inTextureID: 1, inMoveSpeedModifier: 0.8f) },
     };
 
-    readonly TerrainType _type;
-    public TerrainData data => _staticTerrainData[_type];
+    public readonly TerrainType type;
+    public TerrainData data => _staticTerrainData[type];
 
 
     public Terrain(TerrainType inType)
     {
-        _type = inType;
+        type = inType;
     }
 }
 

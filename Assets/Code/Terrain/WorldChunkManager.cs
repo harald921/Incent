@@ -2,18 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorldChunkManager : MonoBehaviour
+// Responsible for holding all the loaded chunks
+public class WorldChunkManager 
 {
+    public static WorldChunkManager instance { get; private set; }
+
     public ChunkGenerator chunkGenerator { get; private set; }
 
     Dictionary<Vector2DInt, Chunk> _chunks = new Dictionary<Vector2DInt, Chunk>();
 
 
-    void Awake()
+    public WorldChunkManager()
     {
-        chunkGenerator = new ChunkGenerator(LoadNoiseParameters()); // TODO: Read from file
+        instance = this;
 
-        GenerateWorld();
+        chunkGenerator = new ChunkGenerator(); // TODO: Read from file
+
+        chunkGenerator.GenerateWorld();
+
+        chunkGenerator.LoadChunk(Vector2DInt.Zero);
     }
 
 
@@ -32,30 +39,5 @@ public class WorldChunkManager : MonoBehaviour
         Vector2DInt tilePosition = WorldPosToLocalTilePos(inWorldPosition);
 
         return _chunks[chunkPosition].data.GetTile(tilePosition);
-    }
-
-
-
-    void GenerateWorld()
-    {
-        for (int y = 0; y < 16; y++)
-            for (int x = 0; x < 16; x++)
-                _chunks.Add(new Vector2DInt(x, y), chunkGenerator.GenerateChunk(new Vector2DInt(x, y)));
-    }
-
-    Noise.Parameters[] LoadNoiseParameters()
-    {
-        // TODO: Read form disk
-        return new Noise.Parameters[]
-        {
-                new Noise.Parameters()
-                {
-                    scale       = 50,
-                    octaves     = 7,
-                    persistance = 1.01f,
-                    lacunarity  = 1.01f,
-                    seed        = 0
-                }
-        };
     }
 }

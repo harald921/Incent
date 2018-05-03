@@ -232,20 +232,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Code\Constants.cs" />
-    <Compile Include="Assets\Code\Creature\CreatureHealthComponent.cs" />
-    <Compile Include="Assets\Code\Creature\CreatureMovementComponent.cs" />
-    <Compile Include="Assets\Code\Creature\CreatureNeedsComponent.cs" />
-    <Compile Include="Assets\Code\Creature\CreatureSkillsComponent.cs" />
+    <Compile Include="Assets\Code\Extensions\FileStreamExtensions.cs" />
+    <Compile Include="Assets\Code\Misc\Constants.cs" />
+    <Compile Include="Assets\Code\Misc\MultiThreader.cs" />
+    <Compile Include="Assets\Code\Misc\Vector2DInt.cs" />
+    <Compile Include="Assets\Code\Program.cs" />
     <Compile Include="Assets\Code\Terrain\Chunk.cs" />
     <Compile Include="Assets\Code\Terrain\ChunkGenerator.cs" />
     <Compile Include="Assets\Code\Terrain\Noise.cs" />
-    <Compile Include="Assets\Code\Terrain\Terrain.cs" />
     <Compile Include="Assets\Code\Terrain\TerrainGenerator.cs" />
-    <Compile Include="Assets\Code\Terrain\Tile.cs" />
+    <Compile Include="Assets\Code\Terrain\Tile\Terrain.cs" />
+    <Compile Include="Assets\Code\Terrain\Tile\Tile.cs" />
     <Compile Include="Assets\Code\Terrain\WorldChunkManager.cs" />
-    <Compile Include="Assets\Code\Texture2DArrayWizard.cs" />
-    <Compile Include="Assets\Code\Vector2DInt.cs" />
+    <Compile Include="Assets\Code\Tools\Texture2DArrayWizard.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Code\Shaders\Terrain.shader" />

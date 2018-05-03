@@ -7,11 +7,11 @@ using UnityEngine;
 
 public class Noise
 {
-    public static float[,] Generate(uint inSize, Parameters inParameters, Vector2DInt inOffset)
+    public static float[,] Generate(int inSize, Parameters inParameters, Vector2DInt inOffset)
     {
         // TODO: Find a perlin noise lib and use it
 
-        System.Random rng = new System.Random((int)inParameters.seed);
+        System.Random rng = new System.Random(inParameters.seed);
 
         float[,] noiseMap = new float[inSize, inSize];
 
@@ -24,10 +24,10 @@ public class Noise
 
     public struct Parameters
     {
-        public uint scale;
-        public uint octaves;
+        public int scale;
+        public int octaves;
         public float persistance;
         public float lacunarity;
-        public uint seed;
+        public int seed;
     }
 }

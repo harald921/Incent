@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 
 public class ChunkGenerator
@@ -11,25 +12,39 @@ public class ChunkGenerator
     readonly ViewGenerator _viewGenerator;
 
 
-    public ChunkGenerator(Noise.Parameters[] inNoiseParameters)
+    public ChunkGenerator()
     {
-        _chunkSize = Constants.Terrain.CHUNK_SIZE; // TODO: Read from file
+        _chunkSize = Constants.Terrain.CHUNK_SIZE; // TODO: Read from disk
 
-        _dataGenerator = new DataGenerator(inNoiseParameters);
+        _dataGenerator = new DataGenerator();
         _viewGenerator = new ViewGenerator();
     }
 
 
-    public Chunk GenerateChunk(Vector2DInt inPosition)
+    public void GenerateWorld()
     {
-        ChunkData  chunkData = _dataGenerator.Generate(inPosition);
-        GameObject chunkView = _viewGenerator.Generate(inPosition, chunkData);
-
-        Chunk newChunk = new Chunk(inPosition, chunkData, chunkView);
-
-        return newChunk;
+        for (int y = 0; y < Constants.Terrain.WORLD_SIZE; y++)
+            for (int x = 0; x < Constants.Terrain.WORLD_SIZE; x++)
+            {
+                Vector2DInt chunkPosition = new Vector2DInt(x, y);
+                _dataGenerator.Generate(chunkPosition);
+            }
     }
 
+    public Chunk LoadChunk(Vector2DInt inPosition)
+    {
+        // Create chunkdata and begin load from disk on a separate thread
+        ChunkData  chunkData = new ChunkData(inPosition);
+        new System.Threading.Thread(() => chunkData.BinaryLoad(inPosition)).Start();
+
+        // Create blank chunk view
+        GameObject chunkView = _viewGenerator.GenerateBlank(inPosition);
+
+        // Make the viewGenerator update the UV2 of the view every time the chunk's data changes
+        chunkData.OnDataDirtied += (ChunkData dirtiedData) => _viewGenerator.UpdateUV2(chunkView, chunkData);
+
+        return new Chunk(chunkData, chunkView);
+    }
 
     class DataGenerator
     {
@@ -37,23 +52,40 @@ public class ChunkGenerator
 
 
         // Constructor
-        public DataGenerator(Noise.Parameters[] inNoiseParameters)
+        public DataGenerator()
         {
-            _noiseParamters = inNoiseParameters;
+            _noiseParamters = LoadNoiseParameters();
         }
 
 
-        public ChunkData Generate(Vector2DInt inPosition)
+        public void Generate(Vector2DInt inPosition)
         {
-            ChunkData newChunkData = new ChunkData();
+            ChunkData newChunkData = new ChunkData(inPosition);
 
             newChunkData.SetTiles(GenerateTiles(inPosition, GenerateNoiseMap(inPosition)));
 
-            return newChunkData;
+            newChunkData.BinarySave();
         }
 
+        Noise.Parameters[] LoadNoiseParameters()
+        {
+            // TODO: Read form disk
+            return new Noise.Parameters[]
+            {
+                new Noise.Parameters()
+                {
+                    scale       = 50,
+                    octaves     = 7,
+                    persistance = 1.01f,
+                    lacunarity  = 1.01f,
+                    seed        = 0
+                }
+            };
+        }
+
+
         float[,] GenerateNoiseMap(Vector2DInt inOffset) => 
-            Noise.Generate((uint)_chunkSize, _noiseParamters[0], inOffset);
+            Noise.Generate(_chunkSize, _noiseParamters[0], inOffset);
 
         Tile[,] GenerateTiles(Vector2DInt inChunkPos, float[,] inNoiseData)
         {
@@ -84,26 +116,25 @@ public class ChunkGenerator
             _chunkMaterial = (Material)Resources.Load("Material_Chunk", typeof(Material));
 
             // Calculate sizes and counts
-            _vertexSize = _chunkSize * 2;
+            _vertexSize  = _chunkSize  * 2;
             _vertexCount = _vertexSize * _vertexSize * 4;
 
-            // Generate vertices
-            _vertices = GenerateVertices();
-
-            // Generate triangle ID's
+            _vertices  = GenerateVertices();
             _triangles = GenerateTriangleIDs();
         }
 
-        public GameObject Generate(Vector2DInt inPosition, ChunkData inChunkData)
-        {
-            GameObject viewGO = GenerateGO(inPosition);
 
-            ApplyMesh(viewGO.GetComponent<MeshFilter>(), GenerateUV2(inChunkData));
+        public GameObject GenerateBlank(Vector2DInt inPosition)
+        {
+            GameObject viewGO = CreateGO(inPosition);
+
+            ApplyMesh(viewGO.GetComponent<MeshFilter>());
 
             return viewGO;
         }
 
-        GameObject GenerateGO(Vector2DInt inPosition)
+
+        public GameObject CreateGO(Vector2DInt inPosition)
         {
             GameObject newChunkGO = new GameObject("Chunk");
 
@@ -171,7 +202,7 @@ public class ChunkGenerator
             return vertices;
         }
 
-        Vector2[] GenerateUV2(ChunkData inChunkData)
+        public Vector2[] GenerateUV2(ChunkData inChunkData)
         {
             Vector2[] newUV2s = new Vector2[_vertexCount];
             int vertexID = 0;
@@ -196,11 +227,13 @@ public class ChunkGenerator
         }
 
 
-        void ApplyMesh(MeshFilter inFilter, Vector2[] inUV2)
+        public void ApplyMesh(MeshFilter inFilter)
         {
             inFilter.mesh.vertices  = _vertices;
             inFilter.mesh.triangles = _triangles;
-            inFilter.mesh.uv2 = inUV2;
         }
+
+        public void UpdateUV2(GameObject inView, ChunkData inChunkData) =>
+            inView.GetComponent<MeshFilter>().mesh.uv2 = GenerateUV2(inChunkData);
     }
 }
