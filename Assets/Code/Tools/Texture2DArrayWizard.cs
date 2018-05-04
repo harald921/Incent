@@ -6,12 +6,11 @@ public class Texture2DArrayWizard : ScriptableWizard
     public Texture2D[] textures;
 
     [MenuItem("Assets/Create/Texture Array")]
-    static void CreateWizard()
-    {
+    static void CreateWizard() =>
         DisplayWizard<Texture2DArrayWizard>("Create Texture Array", "Create");
-    }
 
-    private void OnWizardCreate()
+
+    void OnWizardCreate()
     {
         // If the user didn't input any textures, return
         if (textures.Length == 0)
