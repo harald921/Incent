@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public struct Tile
+public class Tile
 {
-    public readonly Vector2DInt localPosition; // The chunk position of the tile
-    public readonly Vector2DInt chunkPosition; // The world position of the chunk
-    public readonly Vector2DInt worldPosition;
+    public readonly Vector2DInt localPosition; // Chunk position of the tile
+    public readonly Vector2DInt chunkPosition; // World position of the parent chunk
+    public readonly Vector2DInt worldPosition; 
 
     readonly public Terrain terrain;
 
@@ -24,4 +24,10 @@ public struct Tile
 
     // public Tile GetNearbyTile(Vector2DInt inDirection) =>
     //     World.instance.chunkManager.GetTile(worldPosition + inDirection);
+
+    public List<Tile> GetNeighbours()
+    {
+        Debug.LogError("Not implemented");
+        return new List<Tile>();
+    }
 }

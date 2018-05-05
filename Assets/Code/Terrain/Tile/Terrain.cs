@@ -8,8 +8,8 @@ public struct Terrain
 {
     static Dictionary<TerrainType, TerrainData> _staticTerrainData = new Dictionary<TerrainType, TerrainData>()
     {
-        { TerrainType.Grass, new TerrainData(inTextureID: 2, inMoveSpeedModifier: 0.9f) },
-        { TerrainType.Sand,  new TerrainData(inTextureID: 1, inMoveSpeedModifier: 0.8f) },
+        { TerrainType.Grass, new TerrainData(inTextureID: 2, inMoveSpeedModifier: 0.9f, inPassable: true)  },
+        { TerrainType.Sand,  new TerrainData(inTextureID: 1, inMoveSpeedModifier: 0.8f, inPassable: false) },
     };
 
     public readonly TerrainType type;
@@ -24,13 +24,15 @@ public struct Terrain
 
 public class TerrainData
 {
-    public readonly int textureID;
+    public readonly int   textureID;
     public readonly float moveSpeedModifier;
+    public readonly bool  passable; // TODO: Replace this with some kinda bit flag
 
-    public TerrainData(int inTextureID, float inMoveSpeedModifier)
+    public TerrainData(int inTextureID, float inMoveSpeedModifier, bool inPassable)
     {
-        textureID = inTextureID;
+        textureID         = inTextureID;
         moveSpeedModifier = inMoveSpeedModifier;
+        passable          = inPassable;
     }
 }
 

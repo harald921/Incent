@@ -46,6 +46,8 @@ public class ChunkGenerator
         return new Chunk(chunkData, chunkView);
     }
 
+
+
     class DataGenerator
     {
         readonly Noise.Parameters[] _noiseParamters;
