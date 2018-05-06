@@ -9,91 +9,97 @@ using UnityEngine;
 
 public class CreatureMovementComponent 
 {
-    public Transform seeker, target;
-
-
-    void FindPath(Tile inStartTile, Tile inTargetTile)
+    List<Tile> FindPath(Tile inStartTile, Tile inTargetTile)
     {
-        List<Node> checkedNodes   = new List<Node>();
-        List<Node> uncheckedNodes = new List<Node>() {
-            new Node(inStartTile)
+        List<Tile> openTiles = new List<Tile>();
+        List<Tile> closedTiles = new List<Tile>() {
+            inStartTile
         };
 
+        openTiles.AddRange(inStartTile.GetNeighbours());
 
-        while (uncheckedNodes.Count > 0)
+        while (openTiles.Count > 0)
         {
-            // Find the unchecked node with the lowest totalCost and distanceFromEnd
-            Node currentNode = uncheckedNodes[0];
-            foreach (Node uncheckedNode in uncheckedNodes)                                 // Foreach unchecked node
-                if (uncheckedNode.data.totalCost <= currentNode.data.totalCost)            // If its total cost is less or equal to the current tiles total cost
-                    if (uncheckedNode.data.distanceToEnd < currentNode.data.distanceToEnd) // If its distance from the end is less than the current nodes distance from the end
-                        currentNode = uncheckedNode;                                       // It's now the new current node
+            Tile currentTile = openTiles[0];
 
+            // Find the tile that has the lowest total cost, and lowest distance to end
+            foreach (Tile openTile in openTiles)
+                if (openTile.node.totalCost <= currentTile.node.totalCost)
+                {
+                    // If the open tile has the same total cost but is further away from the end, skip it
+                    if (openTile.node.totalCost == currentTile.node.totalCost)
+                        if (openTile.node.distanceToEnd > currentTile.node.distanceToEnd)
+                            continue;
 
-            // If the currentNode is the targetNode, the path has been found
-            if (currentNode.tile == inTargetTile)
-                return;
+                    currentTile = openTile;
+                }
 
-            // Foreach neighbour
-            foreach (Tile neighbour in currentNode.tile.GetNeighbours())
+            // If the current tile is the target tile, the path is completed
+            if (currentTile == inTargetTile)
+                return RetracePath(inStartTile, inTargetTile);
+
+            // Add all walkable neighbours to "openTiles"
+            List<Tile> neighbours = currentTile.GetNeighbours();
+            foreach (Tile neighbour in neighbours)
             {
-                // If the neighbour isn't passable or is already checked, skip it
-                if (!neighbour.terrain.data.passable || checkedNodes.Contains(new Node(neighbour))) // TODO: No, doesn't even work 
+                if (neighbour.terrain.data.passable)
                     continue;
 
-                int distanceToNeighbour        = GetDistance(currentNode.tile, neighbour);               // Calculate if distance is 10 or 14
-                int newNeighbourDistanceToStart = currentNode.data.distanceToStart + distanceToNeighbour; // Calculate how far away from the start node the neighbour is
+                if (closedTiles.Contains(neighbour))
+                    continue;
 
-                if (newNeighbourDistanceToStart < neighbour.distanceToStart)
-                    if (!uncheckedNodes.Contains(neighbour))
-                    {
-                        neighbour.distanceToStart = newNeighbourDistanceToStart;
-                        neighbour.distanceToEnd   = GetDistance(neighbour, inTargetTile);
-                        neighbour.parent          = currentNode;
+                // Calculate the neighbours distance from start
+                int newNeighbourDistanceToStart = currentTile.node.distanceToStart + GetDistance(currentTile, neighbour);
 
-                        if (!uncheckedNodes.Contains(neighbour))
-                            uncheckedNodes.Add(neighbour);
-                    }
+                // If open tiles contains the neighbour and the new distance is longer than the existing, skip
+                if (openTiles.Contains(neighbour))
+                    if (newNeighbourDistanceToStart > neighbour.node.distanceToStart)
+                        continue;
+
+                // Since this is either a newly discovered tile or a tile with now better score, set all the node data and update the parent
+                neighbour.node.distanceToStart = newNeighbourDistanceToStart;
+                neighbour.node.distanceToEnd   = GetDistance(neighbour, inTargetTile);
+                neighbour.node.parent          = currentTile;
+
+                // If it's newly discovered, add it as an open tile
+                if (!openTiles.Contains(neighbour))
+                    openTiles.Add(neighbour);
             }
 
-            // Set current node as checked
-            uncheckedNodes.Remove(currentNode); 
-            checkedNodes.Add(currentNode);
+            // This tile is now closed...
+            closedTiles.Add(currentTile);
+            openTiles.Remove(currentTile);
         }
+
+        // If this is reached, no path was found. Return an empty list.
+        return new List<Tile>();
     }
 
-    int GetDistance(Tile tileA, Tile tileB)
+    List<Tile> RetracePath(Tile inStartTile, Tile inTargetTile)
     {
-        int distanceX = Mathf.Abs(tileA.worldPosition.x - tileB.worldPosition.x);
-        int distanceY = Mathf.Abs(tileA.worldPosition.y - tileB.worldPosition.y);
+        List<Tile> path = new List<Tile>();
+
+        Tile currentTile = inTargetTile;
+        while (currentTile != inStartTile)
+        {
+            path.Add(currentTile);
+            currentTile = currentTile.node.parent;
+        }
+
+        path.Reverse();
+
+        return path;
+    }
+
+    int GetDistance(Tile inTileA, Tile inTileB)
+    {
+        int distanceX = Mathf.Abs(inTileA.worldPosition.x - inTileB.worldPosition.x);
+        int distanceY = Mathf.Abs(inTileA.worldPosition.y - inTileB.worldPosition.y);
 
         return (distanceX > distanceY) ? 14 * distanceY + 10 * (distanceX - distanceY) :
                                          14 * distanceX + 10 * (distanceY - distanceX);
     }
-
-
-    Node FindNode(Vector2DInt inWorldPosition) => new Node(new Tile(Vector2DInt.Zero, Vector2DInt.Zero, new Terrain()));
-}
-
-class Node
-{
-    public Tile tile;
-    public NodeData data;
-
-    public Node(Tile inTile)
-    {
-        tile = inTile;
-    }
-}
-
-struct NodeData
-{
-    public Node parent;
-    public int totalCost;
-    public int distanceToStart;
-    public int distanceToEnd;
 }
 
 
-// Jag behöver göra så att varje tile har en "NodeData" på sig. Detta är för att jag måste kunna hämta "neighbouring nodes" så att nodes "distanceToStart" kan uppdateras.
-// I need to add a "NodeData" to every Tile så that I can get "NeighbouringNodes" from a tile in order to be able to properly update a node's distanceToStart
+
