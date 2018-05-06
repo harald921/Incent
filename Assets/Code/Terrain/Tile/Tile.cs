@@ -22,15 +22,27 @@ public class Tile
         worldPosition = localPosition + (chunkPosition * Constants.Terrain.CHUNK_SIZE); // TODO: Read from file ONCE
 
         terrain = inTerrain;
+
+        node = new Node(this);
     }
 
-    // public Tile GetNearbyTile(Vector2DInt inDirection) =>
-    //     World.instance.chunkManager.GetTile(worldPosition + inDirection);
+    public Tile GetNearbyTile(Vector2DInt inDirection) =>
+        WorldChunkManager.instance.GetTile(worldPosition + inDirection);
 
     public List<Tile> GetNeighbours()
     {
-        Debug.LogError("Not implemented");
-        return new List<Tile>();
+        List<Tile> neighbours = new List<Tile>();
+
+        neighbours.AddIfNotNull(GetNearbyTile(new Vector2DInt(-1, 1)));  // LeftUp       
+        neighbours.AddIfNotNull(GetNearbyTile(new Vector2DInt(0, 1)));   // Up           
+        neighbours.AddIfNotNull(GetNearbyTile(new Vector2DInt(1, 1)));   // RightUp      
+        neighbours.AddIfNotNull(GetNearbyTile(new Vector2DInt(-1, 0)));  // Left         
+        neighbours.AddIfNotNull(GetNearbyTile(new Vector2DInt(1, 0)));   // Right        
+        neighbours.AddIfNotNull(GetNearbyTile(new Vector2DInt(-1, -1))); // LeftDown 
+        neighbours.AddIfNotNull(GetNearbyTile(new Vector2DInt(0, -1)));  // Down
+        neighbours.AddIfNotNull(GetNearbyTile(new Vector2DInt(1, -1)));  // RightDown
+
+        return neighbours;
     }
 }
 

@@ -20,7 +20,7 @@ public class WorldChunkManager
 
         chunkGenerator.GenerateWorld();
 
-        chunkGenerator.LoadChunk(Vector2DInt.Zero);
+        _chunks.Add(Vector2DInt.Zero, chunkGenerator.LoadChunk(Vector2DInt.Zero));
     }
 
 
@@ -35,8 +35,20 @@ public class WorldChunkManager
 
     public Tile GetTile(Vector2DInt inWorldPosition)
     {
+        if (inWorldPosition.x < 0 || inWorldPosition.y < 0)
+        {
+            Debug.LogError("GetTile() tried to access a negative world position");
+            return null;
+        }
+
         Vector2DInt chunkPosition = WorldPosToChunkPos(inWorldPosition);
         Vector2DInt tilePosition = WorldPosToLocalTilePos(inWorldPosition);
+
+        if (!_chunks.ContainsKey(chunkPosition))
+        {
+            Debug.LogError("GetTile() tried to access a chunk that doesn't exist");
+            return null;
+        }
 
         return _chunks[chunkPosition].data.GetTile(tilePosition);
     }
