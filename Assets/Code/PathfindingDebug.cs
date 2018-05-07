@@ -89,7 +89,7 @@ public class PathfindingDebug : MonoBehaviour
 
                     GameObject openGO = GameObject.CreatePrimitive(PrimitiveType.Cube);
                     openGO.GetComponent<MeshRenderer>().material.color = Color.green;
-                    openGO.transform.position = new Vector3(currentTile.worldPosition.x, 0.2f, currentTile.worldPosition.y) + (Vector3.one * 0.5f);
+                    openGO.transform.position = new Vector3(neighbour.worldPosition.x, 0.2f, neighbour.worldPosition.y) + (Vector3.one * 0.5f);
                 }
             }
 
