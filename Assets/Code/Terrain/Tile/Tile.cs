@@ -15,6 +15,7 @@ public class Tile
 
     public readonly Node node;
 
+
     public Tile(Vector2DInt inLocalPosition, Vector2DInt inChunkPosition, Terrain inTerrain)
     {
         localPosition = inLocalPosition;
@@ -26,8 +27,18 @@ public class Tile
         node = new Node(this);
     }
 
+
     public Tile GetNearbyTile(Vector2DInt inDirection) =>
         WorldChunkManager.instance.GetTile(worldPosition + inDirection);
+
+    public int DistanceTo(Tile inTargetTile)
+    {
+        int distanceX = Mathf.Abs(worldPosition.x - inTargetTile.worldPosition.x);
+        int distanceY = Mathf.Abs(worldPosition.y - inTargetTile.worldPosition.y);
+
+        return (distanceX > distanceY) ? 14 * distanceY + 10 * (distanceX - distanceY) :
+                                         14 * distanceX + 10 * (distanceY - distanceX);
+    }
 
     public List<Tile> GetNeighbours()
     {
@@ -43,22 +54,5 @@ public class Tile
         neighbours.AddIfNotNull(GetNearbyTile(new Vector2DInt(1, -1)));  // RightDown
 
         return neighbours;
-    }
-}
-
-public class Node
-{
-    public readonly Tile owner;
-    public Tile parent;
-
-    public int distanceToStart;
-    public int distanceToEnd;
-
-    public int totalCost => distanceToStart + distanceToEnd;
-
-
-    public Node(Tile inOwner)
-    {
-        owner = inOwner;
     }
 }
