@@ -5,7 +5,12 @@ public struct Vector2DInt
 {
     public int x, y;
 
-    public static Vector2DInt Zero => new Vector2DInt(0, 0);
+    public static Vector2DInt Zero  => new Vector2DInt(0, 0);
+    public static Vector2DInt One   => new Vector2DInt(1);
+    public static Vector2DInt Up    => new Vector2DInt(0, 1);
+    public static Vector2DInt Down  => new Vector2DInt(0, -1);
+    public static Vector2DInt Left  => new Vector2DInt(-1, 0);
+    public static Vector2DInt Right => new Vector2DInt(1, 0);
 
 
     public Vector2DInt(int inXandY)

@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Incent", "Incent.csproj", "{93D76CC0-0657-6A0C-38D9-FAC73E5A1C47}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Incent.Plugins", "Incent.Plugins.csproj", "{7F2CCC82-9F99-321D-4FA0-9C09F4E85D59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{93D76CC0-0657-6A0C-38D9-FAC73E5A1C47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93D76CC0-0657-6A0C-38D9-FAC73E5A1C47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93D76CC0-0657-6A0C-38D9-FAC73E5A1C47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F2CCC82-9F99-321D-4FA0-9C09F4E85D59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F2CCC82-9F99-321D-4FA0-9C09F4E85D59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F2CCC82-9F99-321D-4FA0-9C09F4E85D59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F2CCC82-9F99-321D-4FA0-9C09F4E85D59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

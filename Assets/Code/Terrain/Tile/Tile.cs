@@ -28,7 +28,7 @@ public class Tile
     }
 
 
-    public Tile GetNearbyTile(Vector2DInt inDirection) =>
+    public Tile GetRelativeTile(Vector2DInt inDirection) =>
         WorldChunkManager.instance.GetTile(worldPosition + inDirection);
 
     public int DistanceTo(Tile inTargetTile)
@@ -44,14 +44,14 @@ public class Tile
     {
         List<Tile> neighbours = new List<Tile>();
 
-        neighbours.AddIfNotNull(GetNearbyTile(new Vector2DInt(-1, 1)));  // LeftUp       
-        neighbours.AddIfNotNull(GetNearbyTile(new Vector2DInt(0, 1)));   // Up           
-        neighbours.AddIfNotNull(GetNearbyTile(new Vector2DInt(1, 1)));   // RightUp      
-        neighbours.AddIfNotNull(GetNearbyTile(new Vector2DInt(-1, 0)));  // Left         
-        neighbours.AddIfNotNull(GetNearbyTile(new Vector2DInt(1, 0)));   // Right        
-        neighbours.AddIfNotNull(GetNearbyTile(new Vector2DInt(-1, -1))); // LeftDown 
-        neighbours.AddIfNotNull(GetNearbyTile(new Vector2DInt(0, -1)));  // Down
-        neighbours.AddIfNotNull(GetNearbyTile(new Vector2DInt(1, -1)));  // RightDown
+        neighbours.AddIfNotNull(GetRelativeTile(Vector2DInt.Up));   
+        neighbours.AddIfNotNull(GetRelativeTile(Vector2DInt.Left));  
+        neighbours.AddIfNotNull(GetRelativeTile(Vector2DInt.Right));   
+        neighbours.AddIfNotNull(GetRelativeTile(Vector2DInt.Down));  
+        neighbours.AddIfNotNull(GetRelativeTile(Vector2DInt.Up + Vector2DInt.Left));  
+        neighbours.AddIfNotNull(GetRelativeTile(Vector2DInt.Up + Vector2DInt.Right)); 
+        neighbours.AddIfNotNull(GetRelativeTile(Vector2DInt.Down + Vector2DInt.Left)); 
+        neighbours.AddIfNotNull(GetRelativeTile(Vector2DInt.Down + Vector2DInt.Right));  
 
         return neighbours;
     }

@@ -11,6 +11,7 @@ public class WorldChunkManager
 
     Dictionary<Vector2DInt, Chunk> _chunks = new Dictionary<Vector2DInt, Chunk>();
 
+    public static Creature debugCreature;
 
     public WorldChunkManager()
     {
@@ -21,6 +22,7 @@ public class WorldChunkManager
         chunkGenerator.GenerateWorld();
 
         _chunks.Add(Vector2DInt.Zero, chunkGenerator.LoadChunk(Vector2DInt.Zero));
+        debugCreature = new Creature(GetTile(new Vector2DInt(5, 5)));
     }
 
 

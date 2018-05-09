@@ -5,16 +5,16 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{93D76CC0-0657-6A0C-38D9-FAC73E5A1C47}</ProjectGuid>
+    <ProjectGuid>{7F2CCC82-9F99-321D-4FA0-9C09F4E85D59}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <TargetFrameworkProfile></TargetFrameworkProfile>
     <CompilerResponseFile></CompilerResponseFile>
-    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityProjectType>GamePlugins:3</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.0b10</UnityVersion>
     <RootNamespace></RootNamespace>
@@ -232,32 +232,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Incent.Plugins.csproj">
-      <Project>{7F2CCC82-9F99-321D-4FA0-9C09F4E85D59}</Project>
-      <Name>Incent.Plugins</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Assets\Code\Creature\Creature.cs" />
-    <Compile Include="Assets\Code\Creature\CreatureMovementComponent.cs" />
-    <Compile Include="Assets\Code\Creature\CreatureViewComponent.cs" />
-    <Compile Include="Assets\Code\Extensions\FileStreamExtensions.cs" />
-    <Compile Include="Assets\Code\Extensions\ListExtensions.cs" />
-    <Compile Include="Assets\Code\Misc\Constants.cs" />
-    <Compile Include="Assets\Code\Misc\MultiThreader.cs" />
-    <Compile Include="Assets\Code\Misc\Vector2DInt.cs" />
-    <Compile Include="Assets\Code\Node.cs" />
-    <Compile Include="Assets\Code\Pathfinder.cs" />
-    <Compile Include="Assets\Code\PathfindingDebug.cs" />
-    <Compile Include="Assets\Code\Program.cs" />
-    <Compile Include="Assets\Code\Terrain\Chunk.cs" />
-    <Compile Include="Assets\Code\Terrain\ChunkGenerator.cs" />
-    <Compile Include="Assets\Code\Terrain\Noise.cs" />
-    <Compile Include="Assets\Code\Terrain\TerrainGenerator.cs" />
-    <Compile Include="Assets\Code\Terrain\Tile\Terrain.cs" />
-    <Compile Include="Assets\Code\Terrain\Tile\Tile.cs" />
-    <Compile Include="Assets\Code\Terrain\WorldChunkManager.cs" />
-    <Compile Include="Assets\Code\Tools\Texture2DArrayWizard.cs" />
+    <Compile Include="Assets\Plugins\MEC\Timing.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Code\Shaders\Terrain.shader" />
