@@ -12,6 +12,11 @@ public class Player
     {
         Debug.Log("Adding creature to player");
         _ownedCreatures.Add(inCreatureToAdd);
+
+        inCreatureToAdd.movementComponent.OnChunkEnter += (Chunk enteredChunk) => 
+        {
+            Debug.LogError("TODO: Implement calculating visible chunks");
+        };
     }
 
 
