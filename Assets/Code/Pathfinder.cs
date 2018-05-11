@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public static class Pathfinder 
 {
@@ -28,18 +29,18 @@ public static class Pathfinder
                 if (closedTiles.Contains(neighbour))
                     continue;
 
-                // Calculate the neighbours distance from start
-                int newNeighbourDistanceToStart = currentTile.node.distanceToStart + currentTile.DistanceTo(neighbour);
+                // Calculate the neighbours cost from start
+                int newNeighbourCostToStart = currentTile.node.costToStart + currentTile.CostBetween(neighbour);
 
-                // If open tiles contains the neighbour and the new distance is longer than the existing, skip
+                // If open tiles contains the neighbour and the new cost to start is higher than the existing, skip
                 if (openTiles.Contains(neighbour))
-                    if (newNeighbourDistanceToStart > neighbour.node.distanceToStart)
+                    if (newNeighbourCostToStart > neighbour.node.costToStart)
                         continue;
 
                 // Since this is either a newly discovered tile or a tile with now better score, set all the node data and update the parent
-                neighbour.node.distanceToStart = newNeighbourDistanceToStart;
+                neighbour.node.costToStart   = newNeighbourCostToStart;
                 neighbour.node.distanceToEnd = neighbour.DistanceTo(inDestination);
-                neighbour.node.parent = currentTile;
+                neighbour.node.parent        = currentTile;
 
                 // If it's newly discovered, add it as an open tile
                 if (!openTiles.Contains(neighbour))

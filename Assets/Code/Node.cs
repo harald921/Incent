@@ -3,10 +3,10 @@
     public readonly Tile owner;
     public Tile parent;
 
-    public int distanceToStart;
+    public int costToStart;
     public int distanceToEnd;
 
-    public int totalCost => distanceToStart + distanceToEnd;
+    public int totalCost => costToStart + distanceToEnd;
 
 
     public Node(Tile inOwner)

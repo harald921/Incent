@@ -8,8 +8,8 @@ public struct Terrain
 {
     static Dictionary<TerrainType, TerrainData> _staticTerrainData = new Dictionary<TerrainType, TerrainData>()
     {
-        { TerrainType.Grass, new TerrainData(inTextureID: 2, inMoveSpeedModifier: 0.9f, inPassable: true)  },
-        { TerrainType.Sand,  new TerrainData(inTextureID: 1, inMoveSpeedModifier: 0.8f, inPassable: false) },
+        { TerrainType.Grass, new TerrainData(inTextureID: 2, inMoveSpeedModifier: 1.0f, inPassable: true)  },
+        { TerrainType.Sand,  new TerrainData(inTextureID: 1, inMoveSpeedModifier: 0.5f, inPassable: true) },
     };
 
     public readonly TerrainType type;

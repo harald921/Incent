@@ -36,6 +36,9 @@ public class Tile
                                          14 * distanceX + 10 * (distanceY - distanceX);
     }
 
+    public int CostBetween(Tile inTargetTile) =>
+        Mathf.RoundToInt(DistanceTo(inTargetTile) / inTargetTile.terrain.data.moveSpeedModifier);
+
     public List<Tile> GetNeighbours()
     {
         List<Tile> neighbours = new List<Tile>();

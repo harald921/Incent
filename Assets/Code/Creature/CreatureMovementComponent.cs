@@ -40,7 +40,7 @@ public class CreatureMovementComponent
         {
             _currentTile = tile;
             OnTileEnter?.Invoke(tile);
-            yield return Timing.WaitForOneFrame;
+            yield return Timing.WaitForSeconds(0.1f);
         }    
     }
 }
