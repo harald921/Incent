@@ -238,6 +238,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Code\CameraController.cs" />
     <Compile Include="Assets\Code\Creature\Creature.cs" />
     <Compile Include="Assets\Code\Creature\CreatureMovementComponent.cs" />
     <Compile Include="Assets\Code\Creature\CreatureViewComponent.cs" />
