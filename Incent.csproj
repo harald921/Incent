@@ -248,7 +248,7 @@
     <Compile Include="Assets\Code\Misc\Vector2DInt.cs" />
     <Compile Include="Assets\Code\Node.cs" />
     <Compile Include="Assets\Code\Pathfinder.cs" />
-    <Compile Include="Assets\Code\PathfindingDebug.cs" />
+    <Compile Include="Assets\Code\Player.cs" />
     <Compile Include="Assets\Code\Program.cs" />
     <Compile Include="Assets\Code\Terrain\Chunk.cs" />
     <Compile Include="Assets\Code\Terrain\ChunkGenerator.cs" />

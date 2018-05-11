@@ -27,10 +27,6 @@ public class Tile
         node = new Node(this);
     }
 
-
-    public Tile GetRelativeTile(Vector2DInt inDirection) =>
-        WorldChunkManager.instance.GetTile(worldPosition + inDirection);
-
     public int DistanceTo(Tile inTargetTile)
     {
         int distanceX = Mathf.Abs(worldPosition.x - inTargetTile.worldPosition.x);
@@ -48,11 +44,14 @@ public class Tile
         neighbours.AddIfNotNull(GetRelativeTile(Vector2DInt.Left));  
         neighbours.AddIfNotNull(GetRelativeTile(Vector2DInt.Right));   
         neighbours.AddIfNotNull(GetRelativeTile(Vector2DInt.Down));  
-        neighbours.AddIfNotNull(GetRelativeTile(Vector2DInt.Up + Vector2DInt.Left));  
-        neighbours.AddIfNotNull(GetRelativeTile(Vector2DInt.Up + Vector2DInt.Right)); 
+        neighbours.AddIfNotNull(GetRelativeTile(Vector2DInt.Up   + Vector2DInt.Left));  
+        neighbours.AddIfNotNull(GetRelativeTile(Vector2DInt.Up   + Vector2DInt.Right)); 
         neighbours.AddIfNotNull(GetRelativeTile(Vector2DInt.Down + Vector2DInt.Left)); 
         neighbours.AddIfNotNull(GetRelativeTile(Vector2DInt.Down + Vector2DInt.Right));  
 
         return neighbours;
     }
+
+    Tile GetRelativeTile(Vector2DInt inDirection) =>
+        WorldChunkManager.instance.GetTile(worldPosition + inDirection);
 }
