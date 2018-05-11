@@ -22,8 +22,6 @@ public class Player
 
     public void HandleInput()
     {
-        // This method is temporary. For debug purposes.
-
         if (Input.GetMouseButtonDown(1))
         {
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -35,16 +33,12 @@ public class Player
 
 
         if (Input.GetKeyDown(KeyCode.E))
-        {
             if (_selectedCreatureID < _ownedCreatures.Count - 1)
                 _selectedCreatureID++;
-        }
 
         if (Input.GetKeyDown(KeyCode.Q))
-        {
             if (_selectedCreatureID > 0)
                 _selectedCreatureID--;
-        }
     }
 }
 

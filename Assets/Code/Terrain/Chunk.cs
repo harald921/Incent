@@ -12,7 +12,6 @@ public class Chunk
     public Chunk(ChunkData inData, GameObject inViewGO)
     {
         data = inData;
-
     }
 }
 

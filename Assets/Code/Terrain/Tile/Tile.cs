@@ -8,12 +8,15 @@ using UnityEngine;
 public class Tile
 {
     public readonly Vector2DInt localPosition; // Chunk position of the tile
-    public readonly Vector2DInt chunkPosition; // World position of the parent chunk
-    public readonly Vector2DInt worldPosition; 
+    public readonly Vector2DInt chunkPosition;
+    public readonly Vector2DInt worldPosition;
 
     readonly public Terrain terrain;
-
     public readonly Node node;
+
+    public Chunk chunk =>_chunk ?? (_chunk = WorldChunkManager.instance.GetChunk(chunkPosition));
+
+    Chunk _chunk;
 
 
     public Tile(Vector2DInt inLocalPosition, Vector2DInt inChunkPosition, Terrain inTerrain)
