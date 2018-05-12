@@ -8,7 +8,7 @@ public class CreatureMovementComponent
 {
     readonly Creature _creature;
 
-    Tile _currentTile;
+    public Tile currentTile { get; private set; }
 
     CoroutineHandle _followHandle;
 
@@ -19,7 +19,7 @@ public class CreatureMovementComponent
     public CreatureMovementComponent(Creature inCreature, Tile inSpawnTile)
     {
         _creature = inCreature;
-        _currentTile = inSpawnTile;
+        currentTile = inSpawnTile;
     }
 
     
@@ -27,7 +27,7 @@ public class CreatureMovementComponent
     {
         Tile targetTile = WorldChunkManager.instance.GetTile(inTargetPosition);
 
-        List<Tile> path = Pathfinder.FindPath(_currentTile, targetTile);
+        List<Tile> path = Pathfinder.FindPath(currentTile, targetTile);
 
         if (path.Count > 0)
             _followHandle = Timing.RunCoroutineSingleton(FollowPath(path), _followHandle, SingletonBehavior.Overwrite);
@@ -39,8 +39,8 @@ public class CreatureMovementComponent
     {
         foreach (Tile tile in inPath)
         {
-            Tile previousTile = _currentTile;
-            _currentTile = tile;
+            Tile previousTile = currentTile;
+            currentTile = tile;
 
 
             if (previousTile.chunk != tile.chunk)

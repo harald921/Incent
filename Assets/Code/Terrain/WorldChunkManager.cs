@@ -20,7 +20,10 @@ public class WorldChunkManager
 
         chunkGenerator.GenerateWorld();
 
-        _chunks.Add(Vector2DInt.Zero, chunkGenerator.LoadChunk(Vector2DInt.Zero));
+        Player.creatureManager.OnChunkPositionsVisibilityGained += (List<Vector2DInt> chunkPositionsToGenerate) => {
+            foreach (Vector2DInt chunkPosition in chunkPositionsToGenerate)
+                _chunks.Add(chunkPosition, chunkGenerator.LoadChunk(chunkPosition));
+        };
     }
 
 
@@ -29,6 +32,9 @@ public class WorldChunkManager
 
     public static Vector2DInt WorldPosToLocalTilePos(Vector2DInt inWorldPosition) =>
         inWorldPosition % Constants.Terrain.CHUNK_SIZE;
+
+    public static bool ChunkPositionIsWithinWorld(Vector2DInt inChunkPosition) =>
+        inChunkPosition.x >= 0 && inChunkPosition.y >= 0 && inChunkPosition.x <= Constants.Terrain.WORLD_SIZE && inChunkPosition.y <= Constants.Terrain.WORLD_SIZE;
 
 
     public Chunk GetChunk(Vector2DInt inChunkPos) => _chunks[inChunkPos];
