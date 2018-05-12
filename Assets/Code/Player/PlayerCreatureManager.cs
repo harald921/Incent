@@ -44,40 +44,48 @@ public class PlayerCreatureManager
     public void AddCreature(Creature inCreatureToAdd)
     {
         Debug.Log("Adding creature to player");
-        List<Vector2DInt> chunksVisibleToNewCreature = CalculateVisibleChunksPositions(inCreatureToAdd.movementComponent.currentTile.chunkPosition);
-
-        _chunkPositionsVisibleToCreatures.Add(inCreatureToAdd, chunksVisibleToNewCreature);
+        _chunkPositionsVisibleToCreatures.Add(inCreatureToAdd, new List<Vector2DInt>());
 
         // Make the "_chunkPositionsVisibleToCreatures" get updated every time the creature enters a chunk
-        inCreatureToAdd.movementComponent.OnChunkEnter += (Chunk inEnteredChunk) =>
-        {
-            List<Vector2DInt> newVisibleChunkPositions = CalculateVisibleChunksPositions(inEnteredChunk.data.position);
-            List<Vector2DInt> oldVisibleChunkPositions = _chunkPositionsVisibleToCreatures[inCreatureToAdd];
+        inCreatureToAdd.movementComponent.OnChunkEnter += (_) => 
+            SetVisibleChunkPositions(inCreatureToAdd);
 
-            _chunkPositionsVisibleToCreatures[inCreatureToAdd] = newVisibleChunkPositions;
-
-
-            // Calculate which chunks are newly discovered
-            List<Vector2DInt> lostVisibleChunkPositions   = new List<Vector2DInt>();
-            foreach (Vector2DInt oldVisibleChunkPosition in oldVisibleChunkPositions)
-                if (!newVisibleChunkPositions.Contains(oldVisibleChunkPosition))
-                    lostVisibleChunkPositions.Add(oldVisibleChunkPosition);
-
-            if (lostVisibleChunkPositions.Count > 0)
-                OnChunkPositionsVisibilityLost?.Invoke(lostVisibleChunkPositions);
-
-            
-            // Calculate which chunks were lost in the chunk change
-            List<Vector2DInt> gainedVisibleChunkPositions = new List<Vector2DInt>();
-            foreach (Vector2DInt newVisibleChunkPosition in newVisibleChunkPositions)
-                if (!oldVisibleChunkPositions.Contains(newVisibleChunkPosition))
-                    gainedVisibleChunkPositions.Add(newVisibleChunkPosition);
-
-            if (gainedVisibleChunkPositions.Count > 0)
-                OnChunkPositionsVisibilityGained?.Invoke(gainedVisibleChunkPositions);
-        };
+        SetVisibleChunkPositions(inCreatureToAdd);
     }
 
+    void SetVisibleChunkPositions(Creature inCreature)
+    {
+        List<Vector2DInt> newVisibleChunkPositions = CalculateVisibleChunksPositions(inCreature.movementComponent.currentTile.chunk.data.position);
+        List<Vector2DInt> oldVisibleChunkPositions = _chunkPositionsVisibleToCreatures[inCreature];
+
+        _chunkPositionsVisibleToCreatures[inCreature] = newVisibleChunkPositions;
+
+        InvokeLostAndGainedChunkVisibilityCallbacks(oldVisibleChunkPositions, newVisibleChunkPositions);
+    }
+
+    void InvokeLostAndGainedChunkVisibilityCallbacks(List<Vector2DInt> inOldVisibleChunkPositions, List<Vector2DInt> inNewVisibleChunkPositions)
+    {
+        Debug.Log(inOldVisibleChunkPositions.Count);
+        Debug.Log(inNewVisibleChunkPositions.Count);
+        // Calculate which chunks are newly discovered
+        List<Vector2DInt> lostVisibleChunkPositions = new List<Vector2DInt>();
+        foreach (Vector2DInt oldVisibleChunkPosition in inOldVisibleChunkPositions)
+            if (!inNewVisibleChunkPositions.Contains(oldVisibleChunkPosition))
+                lostVisibleChunkPositions.Add(oldVisibleChunkPosition);
+
+        if (lostVisibleChunkPositions.Count > 0)
+            OnChunkPositionsVisibilityLost?.Invoke(lostVisibleChunkPositions);
+
+
+        // Calculate which chunks were lost in the chunk change
+        List<Vector2DInt> gainedVisibleChunkPositions = new List<Vector2DInt>();
+        foreach (Vector2DInt newVisibleChunkPosition in inNewVisibleChunkPositions)
+            if (!inOldVisibleChunkPositions.Contains(newVisibleChunkPosition))
+                gainedVisibleChunkPositions.Add(newVisibleChunkPosition);
+
+        if (gainedVisibleChunkPositions.Count > 0)
+            OnChunkPositionsVisibilityGained?.Invoke(gainedVisibleChunkPositions);
+    }
 
     List<Vector2DInt> CalculateVisibleChunksPositions(Vector2DInt inViewOrigin)
     {
@@ -99,3 +107,6 @@ public class PlayerCreatureManager
         return visibleChunks;
     }
 }
+
+// There's no reason to keep track of what each character can see.
+// Whenever a character enters a chunk, simply see if the new coordinates it can see are in a collection or not. If not, they are gained.

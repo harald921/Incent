@@ -20,6 +20,8 @@ public class WorldChunkManager
 
         chunkGenerator.GenerateWorld();
 
+        _chunks.Add(Vector2DInt.Zero, chunkGenerator.LoadChunk(Vector2DInt.Zero));
+
         Player.creatureManager.OnChunkPositionsVisibilityGained += (List<Vector2DInt> chunkPositionsToGenerate) => {
             foreach (Vector2DInt chunkPosition in chunkPositionsToGenerate)
                 _chunks.Add(chunkPosition, chunkGenerator.LoadChunk(chunkPosition));
