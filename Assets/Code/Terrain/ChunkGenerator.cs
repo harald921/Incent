@@ -33,6 +33,7 @@ public class ChunkGenerator
 
     public Chunk LoadChunk(Vector2DInt inPosition)
     {
+        Debug.Log("load");
         // Create chunkdata and begin load from disk on a separate thread
         ChunkData  chunkData = new ChunkData(inPosition);
         new System.Threading.Thread(() => chunkData.BinaryLoad(inPosition)).Start();
@@ -41,12 +42,16 @@ public class ChunkGenerator
         GameObject chunkView = _viewGenerator.GenerateBlank(inPosition);
 
         // Make the viewGenerator update the UV2 of the view every time the chunk's data changes
-        chunkData.OnDataDirtied += (ChunkData dirtiedData) => _viewGenerator.UpdateUV2(chunkView, chunkData);
+        chunkData.OnDataDirtied += (ChunkData dirtiedData) =>
+            _viewGenerator.UpdateUV2(chunkView, chunkData);
 
         return new Chunk(chunkData, chunkView);
     }
 
-
+    public void UnloadChunk(Chunk inChunk)
+    {
+        Object.Destroy(inChunk.viewGO);
+    }
 
     class DataGenerator
     {

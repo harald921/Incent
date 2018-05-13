@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System.Threading;
 
 public class Chunk
 {
@@ -12,6 +13,7 @@ public class Chunk
     public Chunk(ChunkData inData, GameObject inViewGO)
     {
         data = inData;
+        viewGO = inViewGO;
     }
 }
 
@@ -20,10 +22,17 @@ public class ChunkData
 {
     public readonly Vector2DInt position;
 
-    public Tile[,] tiles { get; private set; }
+    Tile[,] _tiles;
 
-    public Tile GetTile(Vector2DInt inTileCoords) =>
-        tiles[inTileCoords.x, inTileCoords.y];
+    public Tile GetTile(Vector2DInt inTileCoords) => _tiles[inTileCoords.x, inTileCoords.y];
+    public Tile TGetTile(Vector2DInt inTileCoords)
+    {
+        while (_tiles == null)
+            Thread.Sleep(5);
+
+        return GetTile(inTileCoords);
+    }
+
 
     public event Action<ChunkData> OnDataDirtied;
 
@@ -36,14 +45,16 @@ public class ChunkData
 
     public void SetTile(Vector2DInt inTileCoords, Tile inTile)
     {
-        tiles[inTileCoords.x, inTileCoords.y] = inTile;
+        _tiles[inTileCoords.x, inTileCoords.y] = inTile;
         OnDataDirtied?.Invoke(this);
+        Debug.Log("Set tile");
     }
 
     public void SetTiles(Tile[,] inTiles)
     {
-        tiles = inTiles;
+        _tiles = inTiles;
         OnDataDirtied?.Invoke(this);
+        Debug.Log("Set tiles");
     }
 
 
@@ -52,7 +63,7 @@ public class ChunkData
         FileStream stream = File.OpenWrite(Constants.Terrain.CHUNK_SAVE_FOLDER + "\\" + position.ToString() + ".chunk");
         BinaryWriter writer = new BinaryWriter(stream);
 
-        foreach (Tile tile in tiles)
+        foreach (Tile tile in _tiles)
             writer.Write((UInt16)tile.terrain.type);
     }
 
@@ -65,7 +76,7 @@ public class ChunkData
 
         // Create tile array
         int chunkSize = Constants.Terrain.CHUNK_SIZE;
-        tiles = new Tile[chunkSize, chunkSize];
+        _tiles = new Tile[chunkSize, chunkSize];
         
         // Load all tiles from disk
         for (int y = 0; y < chunkSize; y++)
@@ -74,7 +85,7 @@ public class ChunkData
                 Vector2DInt tileLocalPosition = new Vector2DInt(x, y);
                 Terrain tileTerrain = new Terrain((TerrainType)reader.ReadUInt16());
         
-                tiles[x, y] = new Tile(tileLocalPosition, inPosition, tileTerrain);
+                _tiles[x, y] = new Tile(tileLocalPosition, inPosition, tileTerrain);
             }
 
         MultiThreader.InvokeOnMain(() => OnDataDirtied?.Invoke(this));

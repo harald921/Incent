@@ -9,13 +9,16 @@ public static class MultiThreader
 
     public static void ManualUpdate()
     {
-        InvokeMainThreadCallbacks();
+        InvokeFinishedJobs();
 
-        foreach (var item in _mainThreadCallbacks)
-            item?.Invoke();
+        while (_mainThreadCallbacks.Count > 0)
+        {
+            _mainThreadCallbacks[0].Invoke();
+            _mainThreadCallbacks.RemoveAt(0);
+        }
     }
 
-    static void InvokeMainThreadCallbacks()
+    static void InvokeFinishedJobs()
     {
         for (int i = _currentJobs.Count - 1; i >= 0; i--)
         {

@@ -9,7 +9,7 @@ public class WorldChunkManager
 
     public ChunkGenerator chunkGenerator { get; private set; }
 
-    Dictionary<Vector2DInt, Chunk> _chunks = new Dictionary<Vector2DInt, Chunk>();
+    Dictionary<Vector2DInt, Chunk> _loadedChunks = new Dictionary<Vector2DInt, Chunk>();
 
 
     public WorldChunkManager()
@@ -20,11 +20,19 @@ public class WorldChunkManager
 
         chunkGenerator.GenerateWorld();
 
-        _chunks.Add(Vector2DInt.Zero, chunkGenerator.LoadChunk(Vector2DInt.Zero));
+        Player.creatureManager.OnChunkPositionsVisibilityGained += (List<Vector2DInt> inSightedChunkPositions) => {
+            foreach (Vector2DInt sightedChunkPosition in inSightedChunkPositions)
+                if (!_loadedChunks.ContainsKey(sightedChunkPosition))
+                    _loadedChunks.Add(sightedChunkPosition, chunkGenerator.LoadChunk(sightedChunkPosition));
+        };
 
-        Player.creatureManager.OnChunkPositionsVisibilityGained += (List<Vector2DInt> chunkPositionsToGenerate) => {
-            foreach (Vector2DInt chunkPosition in chunkPositionsToGenerate)
-                _chunks.Add(chunkPosition, chunkGenerator.LoadChunk(chunkPosition));
+        Player.creatureManager.OnChunkPositionsVisibilityLost += (List<Vector2DInt> inLostVisibleChunks) => {
+            foreach (Vector2DInt lostChunkPosition in inLostVisibleChunks)
+                if (_loadedChunks.ContainsKey(lostChunkPosition))
+                {
+                    chunkGenerator.UnloadChunk(_loadedChunks[lostChunkPosition]);
+                    _loadedChunks.Remove(lostChunkPosition);
+                }
         };
     }
 
@@ -39,7 +47,15 @@ public class WorldChunkManager
         inChunkPosition.x >= 0 && inChunkPosition.y >= 0 && inChunkPosition.x <= Constants.Terrain.WORLD_SIZE && inChunkPosition.y <= Constants.Terrain.WORLD_SIZE;
 
 
-    public Chunk GetChunk(Vector2DInt inChunkPos) => _chunks[inChunkPos];
+    public Chunk GetChunk(Vector2DInt inChunkPos) => _loadedChunks[inChunkPos];
+    
+    public Chunk GetSpawnChunk()
+    {
+        if (!_loadedChunks.ContainsKey(Vector2DInt.Zero))
+            _loadedChunks.Add(Vector2DInt.Zero, chunkGenerator.LoadChunk(Vector2DInt.Zero));
+
+        return _loadedChunks[Vector2DInt.Zero];
+    }
 
     public Tile GetTile(Vector2DInt inWorldPosition)
     {
@@ -52,12 +68,12 @@ public class WorldChunkManager
         Vector2DInt chunkPosition = WorldPosToChunkPos(inWorldPosition);
         Vector2DInt tilePosition = WorldPosToLocalTilePos(inWorldPosition);
 
-        if (!_chunks.ContainsKey(chunkPosition))
+        if (!_loadedChunks.ContainsKey(chunkPosition))
         {
             Debug.LogError("GetTile() tried to access a chunk that doesn't exist");
             return null;
         }
 
-        return _chunks[chunkPosition].data.GetTile(tilePosition);
+        return _loadedChunks[chunkPosition].data.GetTile(tilePosition);
     }
 }

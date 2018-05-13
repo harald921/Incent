@@ -48,7 +48,7 @@ public class CreatureMovementComponent
 
             OnTileEnter?.Invoke(tile);
 
-            yield return Timing.WaitForSeconds(0.1f);
+            yield return Timing.WaitForSeconds(0.03f);
         }    
     }
 }
