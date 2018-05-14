@@ -2,269 +2,269 @@
 <cherrytree>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="Home" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282248.21" ts_lastsave="1526286135.1" unique_id="1">
 		<rich_text></rich_text>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="Creatures" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282256.63" ts_lastsave="1526282604.35" unique_id="2">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="World" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286135.1" ts_lastsave="1526286168.1" unique_id="62">
 			<rich_text></rich_text>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="Needs" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282281.67" ts_lastsave="1526282336.57" unique_id="4">
+			<node custom_icon_id="0" foreground="" is_bold="False" name="Chunks" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286138.74" ts_lastsave="1526286141.1" unique_id="63">
 				<rich_text></rich_text>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Hunger" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282336.57" ts_lastsave="1526285839.56" unique_id="11">
-					<rich_text scale="h1">Hunger</rich_text>
-					<rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Tiles" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286141.1" ts_lastsave="1526286141.1" unique_id="64">
+					<rich_text></rich_text>
+				</node>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="Creatures" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282256.63" ts_lastsave="1526286159.87" unique_id="2">
+				<rich_text></rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Needs" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282281.67" ts_lastsave="1526282336.57" unique_id="4">
+					<rich_text></rich_text>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Hunger" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282336.57" ts_lastsave="1526285839.56" unique_id="11">
+						<rich_text scale="h1">Hunger</rich_text>
+						<rich_text>
 
 Decreases over time. Increased by eating.
 
 If it decreases too far it will result in moral penalties, debuffs and eventually death.</rich_text>
-				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Nutrition" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282340.05" ts_lastsave="1526285834.01" unique_id="12">
-					<rich_text scale="h1">Nutrition</rich_text>
-					<rich_text>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Nutrition" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282340.05" ts_lastsave="1526285834.01" unique_id="12">
+						<rich_text scale="h1">Nutrition</rich_text>
+						<rich_text>
 
 Decreases over time. Raised by eating food of good quality.
 
 If it decreases too far it will result in moral penalties and debuffs.
 
 There's a great difference between surviving and thriving. having a good nutritional value makes hunger go down slower, and will provide a moral boost. This will make the player strive towards finding multiple ways to feed their characters, and explore the cooking skill.</rich_text>
-				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Thirst" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282342.41" ts_lastsave="1526285842.06" unique_id="13">
-					<rich_text scale="h1">Thirst</rich_text>
-					<rich_text>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Thirst" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282342.41" ts_lastsave="1526285842.06" unique_id="13">
+						<rich_text scale="h1">Thirst</rich_text>
+						<rich_text>
 
 Decreases over time. Increased by drinking.
 
 If it decreases too far it will result in moral penalties, debuffs and eventually death.
 
 Like hunger, thirst is a base need. It exists in order to add another element of complexity to survival. In order to stray far away from water sources, the player will need to craft and transport containers in which water can be stored.</rich_text>
-				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Joy" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282344.28" ts_lastsave="1526285844.88" unique_id="14">
-					<rich_text scale="h1">Joy</rich_text>
-					<rich_text>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Joy" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282344.28" ts_lastsave="1526285844.88" unique_id="14">
+						<rich_text scale="h1">Joy</rich_text>
+						<rich_text>
 
 Decreases over time. Increased by doing fun stuff, or stuff the character enjoys.
 
 If it decreases too far it will result in moral penalties.
 
 In order to actually do stuff that is in most RPG's considered silly, only for RP or otherwise unnecessary, the characters will have a base need of joy. </rich_text>
-				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Comfort" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282355.95" ts_lastsave="1526285929.59" unique_id="16">
-					<rich_text scale="h1">Comfort</rich_text>
-					<rich_text>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Comfort" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282355.95" ts_lastsave="1526285929.59" unique_id="16">
+						<rich_text scale="h1">Comfort</rich_text>
+						<rich_text>
 
 Decreases over time. Increased by sitting or lying down.
 
 If it decreases too far it will result in moral penalties.
 
 Increased by sitting in chairs, sofas, lying down. This could also be seen as a “fatigue” value. If a unit works all day and only eats and drinks, it will eventually have a really poor comfort value and will need to take a break. This can also promote the player to make its units sit down and play or eat. This can promote the player to actually create dedicated rooms for activities rather than over optimizing bases.</rich_text>
-				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Beauty" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282358.39" ts_lastsave="1526286057.67" unique_id="17">
-					<rich_text scale="h1">Beauty</rich_text>
-					<rich_text>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Beauty" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282358.39" ts_lastsave="1526286057.67" unique_id="17">
+						<rich_text scale="h1">Beauty</rich_text>
+						<rich_text>
 
 Decreases in ugly surroundings. Increases in beautiful surroundings.
 
 If it decreases too far it will result in moral penalties.
 
 Promotes actually decorating home areas, and is also another need that adds value to returning home in order to rest up and boost up morale.</rich_text>
-				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Temperature" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282362.01" ts_lastsave="1526286128.17" unique_id="18">
-					<rich_text scale="h1">Temperature</rich_text>
-					<rich_text>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Temperature" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282362.01" ts_lastsave="1526286128.17" unique_id="18">
+						<rich_text scale="h1">Temperature</rich_text>
+						<rich_text>
 
 If it decreases or increases too far it will result in moral penalties, debuffs and eventually death.
 
 This need promotes creating appropriate clothes in order to explore different kinds of biomes and environments. This need promotes creating appropriate clothes in order to explore different kinds of biomes and environments. </rich_text>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="World" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286131.87" ts_lastsave="1526286131.87" unique_id="61">
+						<rich_text></rich_text>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="World" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286128.18" ts_lastsave="1526286128.18" unique_id="56">
+						<rich_text></rich_text>
+					</node>
 				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="World" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286131.87" ts_lastsave="1526286131.87" unique_id="61">
-					<rich_text></rich_text>
-				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="World" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286128.18" ts_lastsave="1526286128.18" unique_id="56">
-					<rich_text></rich_text>
-				</node>
-			</node>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="Types" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282290.17" ts_lastsave="1526285302.76" unique_id="5">
-				<rich_text scale="h1">Hunger</rich_text>
-				<rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Types" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282290.17" ts_lastsave="1526285302.76" unique_id="5">
+					<rich_text scale="h1">Hunger</rich_text>
+					<rich_text>
 
 Decreases over time. Increased by eating.
 
 The point of hunger is to force the player to find ways to feed their units. This is a base drive to actually continue playing and striving to optimize their workflow in order to secure the future of their characters.
 
 </rich_text>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Animals" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282294.3" ts_lastsave="1526282313.64" unique_id="6">
-					<rich_text></rich_text>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Needs" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282313.64" ts_lastsave="1526282313.64" unique_id="10">
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Animals" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282294.3" ts_lastsave="1526282313.64" unique_id="6">
 						<rich_text></rich_text>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Needs" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282313.64" ts_lastsave="1526282313.64" unique_id="10">
+							<rich_text></rich_text>
+						</node>
 					</node>
-				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Humanoids" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282297.62" ts_lastsave="1526282302.65" unique_id="7">
-					<rich_text></rich_text>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Needs" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282302.65" ts_lastsave="1526282559.41" unique_id="8">
-						<rich_text link="node 11" weight="heavy">Hunger</rich_text>
-						<rich_text weight="heavy">
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Humanoids" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282297.62" ts_lastsave="1526282302.65" unique_id="7">
+						<rich_text></rich_text>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Needs" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282302.65" ts_lastsave="1526282559.41" unique_id="8">
+							<rich_text link="node 11" weight="heavy">Hunger</rich_text>
+							<rich_text weight="heavy">
 
 </rich_text>
-						<rich_text link="node 12" weight="heavy">Nutrition</rich_text>
-						<rich_text weight="heavy"> 
+							<rich_text link="node 12" weight="heavy">Nutrition</rich_text>
+							<rich_text weight="heavy"> 
 
 </rich_text>
-						<rich_text link="node 13" weight="heavy">Thirst</rich_text>
-						<rich_text weight="heavy">
+							<rich_text link="node 13" weight="heavy">Thirst</rich_text>
+							<rich_text weight="heavy">
 
 </rich_text>
-						<rich_text link="node 14" weight="heavy">Joy</rich_text>
-						<rich_text weight="heavy">
+							<rich_text link="node 14" weight="heavy">Joy</rich_text>
+							<rich_text weight="heavy">
 
 </rich_text>
-						<rich_text link="node 16" weight="heavy">Comfort</rich_text>
-						<rich_text weight="heavy">
+							<rich_text link="node 16" weight="heavy">Comfort</rich_text>
+							<rich_text weight="heavy">
 
 </rich_text>
-						<rich_text link="node 17" weight="heavy">Beauty</rich_text>
-						<rich_text weight="heavy">
+							<rich_text link="node 17" weight="heavy">Beauty</rich_text>
+							<rich_text weight="heavy">
 
 </rich_text>
-						<rich_text link="node 18" weight="heavy">Temperature</rich_text>
+							<rich_text link="node 18" weight="heavy">Temperature</rich_text>
+						</node>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Skills" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282306.58" ts_lastsave="1526282306.58" unique_id="9">
+							<rich_text></rich_text>
+						</node>
 					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Skills" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282306.58" ts_lastsave="1526282306.58" unique_id="9">
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Skills" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282604.35" ts_lastsave="1526282621.9" unique_id="3">
+					<rich_text></rich_text>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Butchering" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282621.9" ts_lastsave="1526282648.92" unique_id="15">
 						<rich_text></rich_text>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Skinning" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282627.16" ts_lastsave="1526283165.09" unique_id="19">
+							<rich_text>Skinning is the act of removing the skin from a creature. Level affects skinning speed, yield chance and yield quality.</rich_text>
+						</node>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Gutting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282629.52" ts_lastsave="1526283221.29" unique_id="20">
+							<rich_text>Gutting is the act of preparing a corpse for cooking. Level affects gutting speed, yield amount and yield quality.</rich_text>
+						</node>
 					</node>
-				</node>
-			</node>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="Skills" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282604.35" ts_lastsave="1526282621.9" unique_id="3">
-				<rich_text></rich_text>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Butchering" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282621.9" ts_lastsave="1526282648.92" unique_id="15">
-					<rich_text></rich_text>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Skinning" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282627.16" ts_lastsave="1526283165.09" unique_id="19">
-						<rich_text>Skinning is the act of removing the skin from a creature. Level affects skinning speed, yield chance and yield quality.</rich_text>
-					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Gutting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282629.52" ts_lastsave="1526283221.29" unique_id="20">
-						<rich_text>Gutting is the act of preparing a corpse for cooking. Level affects gutting speed, yield amount and yield quality.</rich_text>
-					</node>
-				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Constructing" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282648.92" ts_lastsave="1526282652.33" unique_id="21">
-					<rich_text></rich_text>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Paving" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282714.3" ts_lastsave="1526283248.72" unique_id="32">
-						<rich_text>Paving is the act of laying roads, floors and other pavement. Level affects paving speed.</rich_text>
-					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Architecture" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282717.28" ts_lastsave="1526283278.53" unique_id="33">
-						<rich_text>Architecture is the skill of creating buildings and structures. Level affects construction speed and resulting quality.</rich_text>
-					</node>
-				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Doctoring" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282652.33" ts_lastsave="1526282656.71" unique_id="22">
-					<rich_text></rich_text>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Surgery" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282723.51" ts_lastsave="1526283307.9" unique_id="35">
-						<rich_text>Surgery is the act of operating on a patient in order to fix a wound that is too severe for healing naturally. Level affects surgery success chance.</rich_text>
-					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Wound dressing" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282720.99" ts_lastsave="1526283351.38" unique_id="34">
-						<rich_text>Wound dressing is the act of stopping a wound from bleeding, disinfecting it and making sure it's properly taken care of. Level affects speed and resulting dressing quality.</rich_text>
-					</node>
-				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Fighting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282765.18" ts_lastsave="1526282768.49" unique_id="47">
-					<rich_text></rich_text>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Ranged" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282768.49" ts_lastsave="1526283416.42" unique_id="48">
-						<rich_text>Ranged is how proficient a character is at fighting at range using bows, throwing weapons, etc.</rich_text>
-					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Melee" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282769.75" ts_lastsave="1526283447.13" unique_id="49">
-						<rich_text>Melee is how proficient the character is at fighting in hand to hand combat. </rich_text>
-					</node>
-				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Cooking" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282773.07" ts_lastsave="1526282775.47" unique_id="50">
-					<rich_text></rich_text>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Beverages" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282775.47" ts_lastsave="1526283537.68" unique_id="51">
-						<rich_text>Beverages is how proficient a character is at creating beverages such as tea, wine, lemonade, alcohol, etc.</rich_text>
-					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Baking" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282777.01" ts_lastsave="1526283517.96" unique_id="52">
-						<rich_text>Baking is how proficient a character is at baking bread.</rich_text>
-					</node>
-				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Farming" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282669.52" ts_lastsave="1526282671.56" unique_id="26">
-					<rich_text></rich_text>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Sowing" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282746.23" ts_lastsave="1526283607.33" unique_id="43">
-						<rich_text>Sowing is the act putting seeds in the ground. Skill affects sowing speed and plant quality.</rich_text>
-					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Harvesting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282748.84" ts_lastsave="1526283603.04" unique_id="44">
-						<rich_text>Harvesting is the act of cutting down crops in order to gather them. Level affects harvesting speed and yield quality.</rich_text>
-					</node>
-				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Nature" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282671.56" ts_lastsave="1526282676.16" unique_id="27">
-					<rich_text></rich_text>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Foraging" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282755.71" ts_lastsave="1526283617.58" unique_id="46">
-						<rich_text>Foraging is the act of searching for food in the grass. Level affects yield chance, amount and quality.</rich_text>
-					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Botanizing" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282753.09" ts_lastsave="1526283645.39" unique_id="45">
-						<rich_text>Botanizing is the act of searching for herbs in the grass. Level affects yield chance, amount and quality.</rich_text>
-					</node>
-				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Pottery" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526284845.59" ts_lastsave="1526284935.03" unique_id="58">
-					<rich_text></rich_text>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Shaping" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526284849.03" ts_lastsave="1526285119.91" unique_id="59">
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Constructing" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282648.92" ts_lastsave="1526282652.33" unique_id="21">
 						<rich_text></rich_text>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Paving" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282714.3" ts_lastsave="1526283248.72" unique_id="32">
+							<rich_text>Paving is the act of laying roads, floors and other pavement. Level affects paving speed.</rich_text>
+						</node>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Architecture" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282717.28" ts_lastsave="1526283278.53" unique_id="33">
+							<rich_text>Architecture is the skill of creating buildings and structures. Level affects construction speed and resulting quality.</rich_text>
+						</node>
 					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Firing" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526284863.74" ts_lastsave="1526284863.74" unique_id="60">
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Doctoring" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282652.33" ts_lastsave="1526282656.71" unique_id="22">
 						<rich_text></rich_text>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Surgery" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282723.51" ts_lastsave="1526283307.9" unique_id="35">
+							<rich_text>Surgery is the act of operating on a patient in order to fix a wound that is too severe for healing naturally. Level affects surgery success chance.</rich_text>
+						</node>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Wound dressing" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282720.99" ts_lastsave="1526283351.38" unique_id="34">
+							<rich_text>Wound dressing is the act of stopping a wound from bleeding, disinfecting it and making sure it's properly taken care of. Level affects speed and resulting dressing quality.</rich_text>
+						</node>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Fighting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282765.18" ts_lastsave="1526282768.49" unique_id="47">
+						<rich_text></rich_text>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Ranged" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282768.49" ts_lastsave="1526283416.42" unique_id="48">
+							<rich_text>Ranged is how proficient a character is at fighting at range using bows, throwing weapons, etc.</rich_text>
+						</node>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Melee" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282769.75" ts_lastsave="1526283447.13" unique_id="49">
+							<rich_text>Melee is how proficient the character is at fighting in hand to hand combat. </rich_text>
+						</node>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Cooking" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282773.07" ts_lastsave="1526282775.47" unique_id="50">
+						<rich_text></rich_text>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Beverages" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282775.47" ts_lastsave="1526283537.68" unique_id="51">
+							<rich_text>Beverages is how proficient a character is at creating beverages such as tea, wine, lemonade, alcohol, etc.</rich_text>
+						</node>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Baking" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282777.01" ts_lastsave="1526283517.96" unique_id="52">
+							<rich_text>Baking is how proficient a character is at baking bread.</rich_text>
+						</node>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Farming" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282669.52" ts_lastsave="1526282671.56" unique_id="26">
+						<rich_text></rich_text>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Sowing" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282746.23" ts_lastsave="1526283607.33" unique_id="43">
+							<rich_text>Sowing is the act putting seeds in the ground. Skill affects sowing speed and plant quality.</rich_text>
+						</node>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Harvesting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282748.84" ts_lastsave="1526283603.04" unique_id="44">
+							<rich_text>Harvesting is the act of cutting down crops in order to gather them. Level affects harvesting speed and yield quality.</rich_text>
+						</node>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Nature" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282671.56" ts_lastsave="1526282676.16" unique_id="27">
+						<rich_text></rich_text>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Foraging" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282755.71" ts_lastsave="1526283617.58" unique_id="46">
+							<rich_text>Foraging is the act of searching for food in the grass. Level affects yield chance, amount and quality.</rich_text>
+						</node>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Botanizing" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282753.09" ts_lastsave="1526283645.39" unique_id="45">
+							<rich_text>Botanizing is the act of searching for herbs in the grass. Level affects yield chance, amount and quality.</rich_text>
+						</node>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Pottery" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526284845.59" ts_lastsave="1526284935.03" unique_id="58">
+						<rich_text></rich_text>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Shaping" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526284849.03" ts_lastsave="1526285119.91" unique_id="59">
+							<rich_text></rich_text>
+						</node>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Firing" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526284863.74" ts_lastsave="1526284863.74" unique_id="60">
+							<rich_text></rich_text>
+						</node>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Woodworking" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282660.08" ts_lastsave="1526284845.59" unique_id="24">
+						<rich_text></rich_text>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Carpentry" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282736.71" ts_lastsave="1526283674.69" unique_id="39">
+							<rich_text>How proficient the character is at creating items from wood</rich_text>
+						</node>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Wood cutting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282738.61" ts_lastsave="1526282812.68" unique_id="40">
+							<rich_text></rich_text>
+						</node>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Clothworking" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526284250.07" ts_lastsave="1526284260.82" unique_id="53">
+						<rich_text></rich_text>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Tailoring" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526284260.83" ts_lastsave="1526284270.26" unique_id="54">
+							<rich_text></rich_text>
+						</node>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Weaving" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526284270.26" ts_lastsave="1526284272.9" unique_id="55">
+							<rich_text></rich_text>
+						</node>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Stoneworking" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282666.16" ts_lastsave="1526282910.77" unique_id="25">
+						<rich_text></rich_text>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Masonry" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282742.71" ts_lastsave="1526283079.55" unique_id="42">
+							<rich_text>How proficient the character is at creating items from stone</rich_text>
+						</node>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Mining" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282741.03" ts_lastsave="1526282798.87" unique_id="41">
+							<rich_text></rich_text>
+						</node>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Metalworking" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282656.71" ts_lastsave="1526282909.57" unique_id="23">
+						<rich_text></rich_text>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Smithing" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282729.68" ts_lastsave="1526283081.1" unique_id="37">
+							<rich_text>How proficient the character is at creating items from metal</rich_text>
+						</node>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Smelting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282727.3" ts_lastsave="1526283016.49" unique_id="36">
+							<rich_text>How proficient the character is at smelting ore in order to turn it into workable metal</rich_text>
+						</node>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Metallurgy" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282734.56" ts_lastsave="1526283007.21" unique_id="38">
+							<rich_text>How proficient the character is at mixing metals in order to create alloys</rich_text>
+						</node>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Crafting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282676.16" ts_lastsave="1526284425.56" unique_id="28">
+						<rich_text>How proficient the character is at crafting overall</rich_text>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Armor crafting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282681.26" ts_lastsave="1526283768.1" unique_id="29">
+							<rich_text>How proficient the character is at crafting armor. Level affects what items can be created.</rich_text>
+						</node>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Weapon crafting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282683.9" ts_lastsave="1526283756.35" unique_id="30">
+							<rich_text>How proficient the character is at crafting weapons. Level affects what weapons can be created.</rich_text>
+						</node>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Tool crafting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282696.38" ts_lastsave="1526283718.86" unique_id="31">
+							<rich_text>How proficient the character is at crafting tools. Level affects what items can be created.</rich_text>
+						</node>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Clothes crafting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526284425.56" ts_lastsave="1526284425.56" unique_id="57">
+							<rich_text></rich_text>
+						</node>
 					</node>
 				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Woodworking" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282660.08" ts_lastsave="1526284845.59" unique_id="24">
-					<rich_text></rich_text>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Carpentry" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282736.71" ts_lastsave="1526283674.69" unique_id="39">
-						<rich_text>How proficient the character is at creating items from wood</rich_text>
-					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Wood cutting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282738.61" ts_lastsave="1526282812.68" unique_id="40">
-						<rich_text></rich_text>
-					</node>
-				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Clothworking" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526284250.07" ts_lastsave="1526284260.82" unique_id="53">
-					<rich_text></rich_text>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Tailoring" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526284260.83" ts_lastsave="1526284270.26" unique_id="54">
-						<rich_text></rich_text>
-					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Weaving" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526284270.26" ts_lastsave="1526284272.9" unique_id="55">
-						<rich_text></rich_text>
-					</node>
-				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Stoneworking" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282666.16" ts_lastsave="1526282910.77" unique_id="25">
-					<rich_text></rich_text>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Masonry" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282742.71" ts_lastsave="1526283079.55" unique_id="42">
-						<rich_text>How proficient the character is at creating items from stone</rich_text>
-					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Mining" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282741.03" ts_lastsave="1526282798.87" unique_id="41">
-						<rich_text></rich_text>
-					</node>
-				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Metalworking" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282656.71" ts_lastsave="1526282909.57" unique_id="23">
-					<rich_text></rich_text>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Smithing" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282729.68" ts_lastsave="1526283081.1" unique_id="37">
-						<rich_text>How proficient the character is at creating items from metal</rich_text>
-					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Smelting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282727.3" ts_lastsave="1526283016.49" unique_id="36">
-						<rich_text>How proficient the character is at smelting ore in order to turn it into workable metal</rich_text>
-					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Metallurgy" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282734.56" ts_lastsave="1526283007.21" unique_id="38">
-						<rich_text>How proficient the character is at mixing metals in order to create alloys</rich_text>
-					</node>
-				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Crafting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282676.16" ts_lastsave="1526284425.56" unique_id="28">
-					<rich_text>How proficient the character is at crafting overall</rich_text>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Armor crafting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282681.26" ts_lastsave="1526283768.1" unique_id="29">
-						<rich_text>How proficient the character is at crafting armor. Level affects what items can be created.</rich_text>
-					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Weapon crafting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282683.9" ts_lastsave="1526283756.35" unique_id="30">
-						<rich_text>How proficient the character is at crafting weapons. Level affects what weapons can be created.</rich_text>
-					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Tool crafting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282696.38" ts_lastsave="1526283718.86" unique_id="31">
-						<rich_text>How proficient the character is at crafting tools. Level affects what items can be created.</rich_text>
-					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Clothes crafting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526284425.56" ts_lastsave="1526284425.56" unique_id="57">
-						<rich_text></rich_text>
-					</node>
-				</node>
-			</node>
-		</node>
-	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="World" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286135.1" ts_lastsave="1526286138.74" unique_id="62">
-		<rich_text></rich_text>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="Chunks" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286138.74" ts_lastsave="1526286141.1" unique_id="63">
-			<rich_text></rich_text>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="Tiles" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286141.1" ts_lastsave="1526286141.1" unique_id="64">
-				<rich_text></rich_text>
 			</node>
 		</node>
 	</node>

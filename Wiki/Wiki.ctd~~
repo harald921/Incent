@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <cherrytree>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="Home" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282248.21" ts_lastsave="1526282256.63" unique_id="1">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="Home" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282248.21" ts_lastsave="1526286135.1" unique_id="1">
 		<rich_text></rich_text>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="Creatures" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282256.63" ts_lastsave="1526282604.35" unique_id="2">
 			<rich_text></rich_text>
@@ -64,13 +64,19 @@ If it decreases too far it will result in moral penalties.
 
 Promotes actually decorating home areas, and is also another need that adds value to returning home in order to rest up and boost up morale.</rich_text>
 				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Temperature" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282362.01" ts_lastsave="1526286068.22" unique_id="18">
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Temperature" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282362.01" ts_lastsave="1526286128.17" unique_id="18">
 					<rich_text scale="h1">Temperature</rich_text>
 					<rich_text>
 
 If it decreases or increases too far it will result in moral penalties, debuffs and eventually death.
 
 This need promotes creating appropriate clothes in order to explore different kinds of biomes and environments. This need promotes creating appropriate clothes in order to explore different kinds of biomes and environments. </rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="World" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286131.87" ts_lastsave="1526286131.87" unique_id="61">
+					<rich_text></rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="World" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286128.18" ts_lastsave="1526286128.18" unique_id="56">
+					<rich_text></rich_text>
 				</node>
 			</node>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="Types" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282290.17" ts_lastsave="1526285302.76" unique_id="5">
@@ -250,6 +256,15 @@ The point of hunger is to force the player to find ways to feed their units. Thi
 						<rich_text></rich_text>
 					</node>
 				</node>
+			</node>
+		</node>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="World" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286135.1" ts_lastsave="1526286138.74" unique_id="62">
+		<rich_text></rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="Chunks" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286138.74" ts_lastsave="1526286141.1" unique_id="63">
+			<rich_text></rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="Tiles" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286141.1" ts_lastsave="1526286141.1" unique_id="64">
+				<rich_text></rich_text>
 			</node>
 		</node>
 	</node>

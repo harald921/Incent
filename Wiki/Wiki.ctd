@@ -192,13 +192,22 @@ The point of hunger is to force the player to find ways to feed their units. Thi
 							<rich_text>Harvesting is the act of cutting down crops in order to gather them. Level affects harvesting speed and yield quality.</rich_text>
 						</node>
 					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Nature" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282671.56" ts_lastsave="1526282676.16" unique_id="27">
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Nature" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282671.56" ts_lastsave="1526318480.31" unique_id="27">
 						<rich_text></rich_text>
 						<node custom_icon_id="0" foreground="" is_bold="False" name="Foraging" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282755.71" ts_lastsave="1526283617.58" unique_id="46">
 							<rich_text>Foraging is the act of searching for food in the grass. Level affects yield chance, amount and quality.</rich_text>
 						</node>
 						<node custom_icon_id="0" foreground="" is_bold="False" name="Botanizing" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282753.09" ts_lastsave="1526283645.39" unique_id="45">
 							<rich_text>Botanizing is the act of searching for herbs in the grass. Level affects yield chance, amount and quality.</rich_text>
+						</node>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Animals" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526318480.32" ts_lastsave="1526318483.94" unique_id="65">
+						<rich_text></rich_text>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Taming" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526318483.94" ts_lastsave="1526318486.6" unique_id="66">
+							<rich_text></rich_text>
+						</node>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="Husbandry" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526318486.6" ts_lastsave="1526318486.6" unique_id="67">
+							<rich_text></rich_text>
 						</node>
 					</node>
 					<node custom_icon_id="0" foreground="" is_bold="False" name="Pottery" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526284845.59" ts_lastsave="1526284935.03" unique_id="58">
