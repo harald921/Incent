@@ -306,164 +306,195 @@ How proficient a character is at felling trees. Level affects yield quality.</ri
 			</node>
 		</node>
 	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="Home" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282248.21" ts_lastsave="1526354731.08" unique_id="1">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="Home" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282248.21" ts_lastsave="1526364252.09" unique_id="1">
 		<rich_text>Inscent - Wurm, mixed with RimWorld and The Sims
 
 Wurm is a great game. The problem is that it requires a vast amount of time of just watching the monitor. The towns stand empty because people don't have the time to idle around. But what if your characters never logged out and kept working all the time?</rich_text>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="World" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286135.1" ts_lastsave="1526286168.1" unique_id="62">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="Creatures" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282256.63" ts_lastsave="1526364235.42" unique_id="2">
 			<rich_text></rich_text>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="Chunks" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286138.74" ts_lastsave="1526286141.1" unique_id="63">
+			<node custom_icon_id="0" foreground="" is_bold="False" name="Needs" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282281.67" ts_lastsave="1526282336.57" unique_id="4">
 				<rich_text></rich_text>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Tiles" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286141.1" ts_lastsave="1526286141.1" unique_id="64">
-					<rich_text></rich_text>
-				</node>
-			</node>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="Creatures" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282256.63" ts_lastsave="1526363474.6" unique_id="2">
-				<rich_text></rich_text>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Needs" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282281.67" ts_lastsave="1526282336.57" unique_id="4">
-					<rich_text></rich_text>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Beauty" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282358.39" ts_lastsave="1526286057.67" unique_id="17">
-						<rich_text scale="h1">Beauty</rich_text>
-						<rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Beauty" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282358.39" ts_lastsave="1526286057.67" unique_id="17">
+					<rich_text scale="h1">Beauty</rich_text>
+					<rich_text>
 
 Decreases in ugly surroundings. Increases in beautiful surroundings.
 
 If it decreases too far it will result in moral penalties.
 
 Promotes actually decorating home areas, and is also another need that adds value to returning home in order to rest up and boost up morale.</rich_text>
-					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Comfort" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282355.95" ts_lastsave="1526285929.59" unique_id="16">
-						<rich_text scale="h1">Comfort</rich_text>
-						<rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Comfort" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282355.95" ts_lastsave="1526285929.59" unique_id="16">
+					<rich_text scale="h1">Comfort</rich_text>
+					<rich_text>
 
 Decreases over time. Increased by sitting or lying down.
 
 If it decreases too far it will result in moral penalties.
 
 Increased by sitting in chairs, sofas, lying down. This could also be seen as a “fatigue” value. If a unit works all day and only eats and drinks, it will eventually have a really poor comfort value and will need to take a break. This can also promote the player to make its units sit down and play or eat. This can promote the player to actually create dedicated rooms for activities rather than over optimizing bases.</rich_text>
-					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Hunger" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282336.57" ts_lastsave="1526285839.56" unique_id="11">
-						<rich_text scale="h1">Hunger</rich_text>
-						<rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Hunger" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282336.57" ts_lastsave="1526285839.56" unique_id="11">
+					<rich_text scale="h1">Hunger</rich_text>
+					<rich_text>
 
 Decreases over time. Increased by eating.
 
 If it decreases too far it will result in moral penalties, debuffs and eventually death.</rich_text>
-					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Joy" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282344.28" ts_lastsave="1526285844.88" unique_id="14">
-						<rich_text scale="h1">Joy</rich_text>
-						<rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Joy" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282344.28" ts_lastsave="1526285844.88" unique_id="14">
+					<rich_text scale="h1">Joy</rich_text>
+					<rich_text>
 
 Decreases over time. Increased by doing fun stuff, or stuff the character enjoys.
 
 If it decreases too far it will result in moral penalties.
 
 In order to actually do stuff that is in most RPG's considered silly, only for RP or otherwise unnecessary, the characters will have a base need of joy. </rich_text>
-					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Nutrition" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282340.05" ts_lastsave="1526285834.01" unique_id="12">
-						<rich_text scale="h1">Nutrition</rich_text>
-						<rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Nutrition" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282340.05" ts_lastsave="1526285834.01" unique_id="12">
+					<rich_text scale="h1">Nutrition</rich_text>
+					<rich_text>
 
 Decreases over time. Raised by eating food of good quality.
 
 If it decreases too far it will result in moral penalties and debuffs.
 
 There's a great difference between surviving and thriving. having a good nutritional value makes hunger go down slower, and will provide a moral boost. This will make the player strive towards finding multiple ways to feed their characters, and explore the cooking skill.</rich_text>
-					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Temperature" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282362.01" ts_lastsave="1526286128.17" unique_id="18">
-						<rich_text scale="h1">Temperature</rich_text>
-						<rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Temperature" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282362.01" ts_lastsave="1526286128.17" unique_id="18">
+					<rich_text scale="h1">Temperature</rich_text>
+					<rich_text>
 
 If it decreases or increases too far it will result in moral penalties, debuffs and eventually death.
 
 This need promotes creating appropriate clothes in order to explore different kinds of biomes and environments. This need promotes creating appropriate clothes in order to explore different kinds of biomes and environments. </rich_text>
-					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Thirst" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282342.41" ts_lastsave="1526285842.06" unique_id="13">
-						<rich_text scale="h1">Thirst</rich_text>
-						<rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Thirst" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282342.41" ts_lastsave="1526285842.06" unique_id="13">
+					<rich_text scale="h1">Thirst</rich_text>
+					<rich_text>
 
 Decreases over time. Increased by drinking.
 
 If it decreases too far it will result in moral penalties, debuffs and eventually death.
 
 Like hunger, thirst is a base need. It exists in order to add another element of complexity to survival. In order to stray far away from water sources, the player will need to craft and transport containers in which water can be stored.</rich_text>
-					</node>
 				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Types" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282290.17" ts_lastsave="1526285302.76" unique_id="5">
-					<rich_text scale="h1">Hunger</rich_text>
-					<rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="Types" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282290.17" ts_lastsave="1526285302.76" unique_id="5">
+				<rich_text scale="h1">Hunger</rich_text>
+				<rich_text>
 
 Decreases over time. Increased by eating.
 
 The point of hunger is to force the player to find ways to feed their units. This is a base drive to actually continue playing and striving to optimize their workflow in order to secure the future of their characters.
 
 </rich_text>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Animals" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282294.3" ts_lastsave="1526282313.64" unique_id="6">
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Animals" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282294.3" ts_lastsave="1526282313.64" unique_id="6">
+					<rich_text></rich_text>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Needs" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282313.64" ts_lastsave="1526282313.64" unique_id="10">
 						<rich_text></rich_text>
-						<node custom_icon_id="0" foreground="" is_bold="False" name="Needs" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282313.64" ts_lastsave="1526282313.64" unique_id="10">
-							<rich_text></rich_text>
-						</node>
-					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Humanoids" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282297.62" ts_lastsave="1526282302.65" unique_id="7">
-						<rich_text></rich_text>
-						<node custom_icon_id="0" foreground="" is_bold="False" name="Needs" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282302.65" ts_lastsave="1526282559.41" unique_id="8">
-							<rich_text link="node 11" weight="heavy">Hunger</rich_text>
-							<rich_text weight="heavy">
-
-</rich_text>
-							<rich_text link="node 12" weight="heavy">Nutrition</rich_text>
-							<rich_text weight="heavy"> 
-
-</rich_text>
-							<rich_text link="node 13" weight="heavy">Thirst</rich_text>
-							<rich_text weight="heavy">
-
-</rich_text>
-							<rich_text link="node 14" weight="heavy">Joy</rich_text>
-							<rich_text weight="heavy">
-
-</rich_text>
-							<rich_text link="node 16" weight="heavy">Comfort</rich_text>
-							<rich_text weight="heavy">
-
-</rich_text>
-							<rich_text link="node 17" weight="heavy">Beauty</rich_text>
-							<rich_text weight="heavy">
-
-</rich_text>
-							<rich_text link="node 18" weight="heavy">Temperature</rich_text>
-						</node>
-						<node custom_icon_id="0" foreground="" is_bold="False" name="Skills" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282306.58" ts_lastsave="1526282306.58" unique_id="9">
-							<rich_text></rich_text>
-						</node>
 					</node>
 				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Skills (Prototype)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526363474.6" ts_lastsave="1526363621.23" unique_id="49">
-					<rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Humanoids" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282297.62" ts_lastsave="1526282302.65" unique_id="7">
+					<rich_text></rich_text>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Needs" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282302.65" ts_lastsave="1526282559.41" unique_id="8">
+						<rich_text link="node 11" weight="heavy">Hunger</rich_text>
+						<rich_text weight="heavy">
+
+</rich_text>
+						<rich_text link="node 12" weight="heavy">Nutrition</rich_text>
+						<rich_text weight="heavy"> 
+
+</rich_text>
+						<rich_text link="node 13" weight="heavy">Thirst</rich_text>
+						<rich_text weight="heavy">
+
+</rich_text>
+						<rich_text link="node 14" weight="heavy">Joy</rich_text>
+						<rich_text weight="heavy">
+
+</rich_text>
+						<rich_text link="node 16" weight="heavy">Comfort</rich_text>
+						<rich_text weight="heavy">
+
+</rich_text>
+						<rich_text link="node 17" weight="heavy">Beauty</rich_text>
+						<rich_text weight="heavy">
+
+</rich_text>
+						<rich_text link="node 18" weight="heavy">Temperature</rich_text>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Skills" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526282306.58" ts_lastsave="1526282306.58" unique_id="9">
+						<rich_text></rich_text>
+					</node>
+				</node>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="Skills (Prototype)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526363474.6" ts_lastsave="1526363621.23" unique_id="49">
+				<rich_text>
 The skills that will first be implemented in order to try out the skill system.</rich_text>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Mining" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526363550.79" ts_lastsave="1526363553.1" unique_id="69">
-						<rich_text scale="h1">Mining</rich_text>
-						<rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Mining" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526363550.79" ts_lastsave="1526363553.1" unique_id="69">
+					<rich_text scale="h1">Mining</rich_text>
+					<rich_text>
 
 How proficient a character is at </rich_text>
-					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Masonry" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526363515.28" ts_lastsave="1526363558.85" unique_id="61">
-						<rich_text scale="h1">Masonry</rich_text>
-						<rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Masonry" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526363515.28" ts_lastsave="1526363558.85" unique_id="61">
+					<rich_text scale="h1">Masonry</rich_text>
+					<rich_text>
 
 How proficient a character is at creating items from stone</rich_text>
-					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Woodcutting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526363524.78" ts_lastsave="1526363525.76" unique_id="68">
-						<rich_text scale="h1">Wood cutting</rich_text>
-						<rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Woodcutting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526363524.78" ts_lastsave="1526363525.76" unique_id="68">
+					<rich_text scale="h1">Wood cutting</rich_text>
+					<rich_text>
 
 How proficient a character is at felling trees. Level affects yield quality.</rich_text>
-					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="Carpentry" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526363494.01" ts_lastsave="1526363560.76" unique_id="56">
-						<rich_text scale="h1">Carpentry</rich_text>
-						<rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Carpentry" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526363494.01" ts_lastsave="1526363560.76" unique_id="56">
+					<rich_text scale="h1">Carpentry</rich_text>
+					<rich_text>
 
 How proficient the character is at creating items, structures and furniture from wood. </rich_text>
+				</node>
+			</node>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="World" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286135.1" ts_lastsave="1526286168.1" unique_id="62">
+			<rich_text></rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="Chunk" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286138.74" ts_lastsave="1526364078.45" unique_id="63">
+				<rich_text></rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Tiles" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286141.1" ts_lastsave="1526367767.06" unique_id="64">
+					<rich_text scale="h1">Tile</rich_text>
+					<rich_text>
+
+Is made from the following data:
+
+• </rich_text>
+					<rich_text link="node 53">Terrain</rich_text>
+					<rich_text> - The terrain type of the tile. Rock, dirt, sand, etc.
+ 
+• </rich_text>
+					<rich_text link="node 65">Pavement</rich_text>
+					<rich_text> - The pavement of the tile, if any. Cobblestone road, stone tiles, etc.
+ 
+• </rich_text>
+					<rich_text link="node 70">Furniture</rich_text>
+					<rich_text> - The type of furniture located on this tile, if any. Chair, bed, wall, tree.  
+
+• </rich_text>
+					<rich_text link="node 71">Items</rich_text>
+					<rich_text>  - The type of items located on this tile, if any.
+
+
+</rich_text>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Terrain" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526364211.83" ts_lastsave="1526364213.91" unique_id="53">
+						<rich_text></rich_text>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Pavement" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526364213.91" ts_lastsave="1526364220.87" unique_id="65">
+						<rich_text></rich_text>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="Furniture" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526364220.87" ts_lastsave="1526364220.87" unique_id="70">
+						<rich_text></rich_text>
 					</node>
 				</node>
 			</node>
@@ -476,6 +507,9 @@ How proficient the character is at creating items, structures and furniture from
 					<rich_text>Kenshi</rich_text>
 				</node>
 			</node>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="Items" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526364252.09" ts_lastsave="1526364252.09" unique_id="71">
+			<rich_text></rich_text>
 		</node>
 	</node>
 </cherrytree>
