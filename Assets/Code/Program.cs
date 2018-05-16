@@ -17,5 +17,15 @@ public class Program : MonoBehaviour
     {
         Player.ManualUpdate();
         MultiThreader.ManualUpdate();
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Vector3     mouseWorldPosition  = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2DInt targetWorldPosition = new Vector2DInt((int)mouseWorldPosition.x, (int)mouseWorldPosition.z);
+
+            Chunk targetChunk = WorldChunkManager.instance.GetTile(targetWorldPosition).chunk;
+
+            targetChunk.data.PlaceFurniture(targetWorldPosition, new Furniture(new Vector2DInt(1, 2)));
+        }
     }
 }

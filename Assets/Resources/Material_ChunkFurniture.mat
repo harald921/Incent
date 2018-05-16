@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Material_Chunk
+  m_Name: Material_ChunkTerrain
   m_Shader: {fileID: 4800000, guid: c32094d0c5792cb4db61f8a7b2638576, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4

@@ -30,7 +30,7 @@ public static class Pathfinder
                     continue;
 
                 // Calculate the neighbours cost from start
-                int newNeighbourCostToStart = currentTile.node.costToStart + currentTile.CostBetween(neighbour);
+                int newNeighbourCostToStart = currentTile.node.costToStart + currentTile.node.CostBetween(neighbour);
 
                 // If open tiles contains the neighbour and the new cost to start is higher than the existing, skip
                 if (openTiles.Contains(neighbour))
@@ -39,7 +39,7 @@ public static class Pathfinder
 
                 // Since this is either a newly discovered tile or a tile with now better score, set all the node data and update the parent
                 neighbour.node.costToStart   = newNeighbourCostToStart;
-                neighbour.node.distanceToEnd = neighbour.DistanceTo(inDestination);
+                neighbour.node.distanceToEnd = neighbour.node.DistanceTo(inDestination);
                 neighbour.node.parent        = currentTile;
 
                 // If it's newly discovered, add it as an open tile

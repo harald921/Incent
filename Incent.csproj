@@ -254,6 +254,7 @@
     <Compile Include="Assets\Code\Program.cs" />
     <Compile Include="Assets\Code\Terrain\Chunk.cs" />
     <Compile Include="Assets\Code\Terrain\ChunkGenerator.cs" />
+    <Compile Include="Assets\Code\Terrain\Furniture.cs" />
     <Compile Include="Assets\Code\Terrain\Noise.cs" />
     <Compile Include="Assets\Code\Terrain\TerrainGenerator.cs" />
     <Compile Include="Assets\Code\Terrain\Tile\Terrain.cs" />

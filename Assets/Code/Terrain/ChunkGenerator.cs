@@ -33,23 +33,32 @@ public class ChunkGenerator
 
     public Chunk LoadChunk(Vector2DInt inPosition)
     {
-        Debug.Log("load");
         // Create chunkdata and begin load from disk on a separate thread
         ChunkData  chunkData = new ChunkData(inPosition);
         new System.Threading.Thread(() => chunkData.BinaryLoad(inPosition)).Start();
 
         // Create blank chunk view
-        GameObject chunkView = _viewGenerator.GenerateBlank(inPosition);
+        GameObject chunkTerrainView   = _viewGenerator.GenerateBlankTerrainView(inPosition);
+        GameObject chunkFurnitureView = _viewGenerator.GenerateBlankFurnitureView(inPosition);
 
         // Make the viewGenerator update the UV2 of the view every time the chunk's data changes
-        chunkData.OnDataDirtied += (ChunkData dirtiedData) =>
-            _viewGenerator.UpdateUV2(chunkView, chunkData);
+        chunkData.OnTilesDirtied += (ChunkData dirtiedData) =>
+        {
+            chunkTerrainView.GetComponent<MeshFilter>().mesh.uv2   = _viewGenerator.GenerateTerrainUV2(dirtiedData); // TODO: Getting these meshfilters before the event saves having to do it every time it's called
+            chunkFurnitureView.GetComponent<MeshFilter>().mesh.uv2 = _viewGenerator.GenerateFurnitureUV2(dirtiedData);
+        };
 
-        return new Chunk(chunkData, chunkView);
+        chunkData.OnFurnitureDataDirtied += (ChunkData dirtiedData) =>
+        {
+            chunkFurnitureView.GetComponent<MeshFilter>().mesh.uv2 = _viewGenerator.GenerateFurnitureUV2(dirtiedData);
+        };
+
+        return new Chunk(chunkData, chunkTerrainView);
     }
 
     public void UnloadChunk(Chunk inChunk)
     {
+        Debug.Log("TODO: Make destroyed chunks save to disk");
         Object.Destroy(inChunk.viewGO);
     }
 
@@ -109,7 +118,8 @@ public class ChunkGenerator
 
     class ViewGenerator
     {
-        readonly Material _chunkMaterial;
+        readonly Material _chunkTerrainMaterial;
+        readonly Material _chunkFurnitureMaterial;
 
         readonly int _vertexSize;
         readonly int _vertexCount;
@@ -120,7 +130,8 @@ public class ChunkGenerator
 
         public ViewGenerator()
         {
-            _chunkMaterial = (Material)Resources.Load("Material_Chunk", typeof(Material));
+            _chunkTerrainMaterial   = (Material)Resources.Load("Material_ChunkTerrain", typeof(Material));
+            _chunkFurnitureMaterial = (Material)Resources.Load("Material_ChunkFurniture", typeof(Material));
 
             // Calculate sizes and counts
             _vertexSize  = _chunkSize  * 2;
@@ -131,11 +142,26 @@ public class ChunkGenerator
         }
 
 
-        public GameObject GenerateBlank(Vector2DInt inPosition)
+        public GameObject GenerateBlankTerrainView(Vector2DInt inPosition)
+        {
+            GameObject viewGO = GenerateBlank(inPosition);
+            viewGO.GetComponent<MeshRenderer>().material = _chunkTerrainMaterial;
+            return viewGO;
+        }
+
+        public GameObject GenerateBlankFurnitureView(Vector2DInt inPosition)
+        {
+            GameObject viewGO = GenerateBlank(inPosition);
+            viewGO.GetComponent<MeshRenderer>().material = _chunkFurnitureMaterial;
+            return viewGO;
+        }
+
+        GameObject GenerateBlank(Vector2DInt inPosition)
         {
             GameObject viewGO = CreateGO(inPosition);
+            MeshFilter viewMeshFilter = viewGO.GetComponent<MeshFilter>();
 
-            ApplyMesh(viewGO.GetComponent<MeshFilter>());
+            ApplyMesh(viewMeshFilter);
 
             return viewGO;
         }
@@ -146,10 +172,7 @@ public class ChunkGenerator
             GameObject newChunkGO = new GameObject("Chunk");
 
             newChunkGO.AddComponent<MeshFilter>();
-
-            MeshRenderer meshRenderer = newChunkGO.AddComponent<MeshRenderer>();
-
-            meshRenderer.material = _chunkMaterial;
+            newChunkGO.AddComponent<MeshRenderer>();
 
             newChunkGO.transform.position = new Vector3(inPosition.x, 0, inPosition.y) * _chunkSize;
 
@@ -209,7 +232,7 @@ public class ChunkGenerator
             return vertices;
         }
 
-        public Vector2[] GenerateUV2(ChunkData inChunkData)
+        public Vector2[] GenerateTerrainUV2(ChunkData inChunkData)
         {
             Vector2[] newUV2s = new Vector2[_vertexCount];
             int vertexID = 0;
@@ -233,14 +256,19 @@ public class ChunkGenerator
             return newUV2s;
         }
 
+        public Vector2[] GenerateFurnitureUV2(ChunkData inChunkData)
+        {
+            Vector2[] newUV2s = new Vector2[_vertexCount];
+
+            Debug.LogError("TODO: Generate furniture view");
+
+            return newUV2s;
+        }
 
         public void ApplyMesh(MeshFilter inFilter)
         {
             inFilter.mesh.vertices  = _vertices;
             inFilter.mesh.triangles = _triangles;
         }
-
-        public void UpdateUV2(GameObject inView, ChunkData inChunkData) =>
-            inView.GetComponent<MeshFilter>().mesh.uv2 = GenerateUV2(inChunkData);
     }
 }

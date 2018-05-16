@@ -7,16 +7,23 @@ using UnityEngine;
 
 public class Tile
 {
-    public readonly Vector2DInt localPosition; // Chunk position of the tile
-    public readonly Vector2DInt chunkPosition;
-    public readonly Vector2DInt worldPosition;
+    public readonly Vector2DInt localPosition; // Position of the tile in the chunk
+    public readonly Vector2DInt chunkPosition; // Position of the chunk 
+    public readonly Vector2DInt worldPosition; // Position of the tile in the world
 
-    readonly public Terrain terrain;
     public readonly Node node;
+    public readonly Terrain terrain;
+
+    public Furniture furniture { get; private set; }
 
     public Chunk chunk =>_chunk ?? (_chunk = WorldChunkManager.instance.GetChunk(chunkPosition));
-
     Chunk _chunk;
+
+
+    public void SetFurniture(Furniture inFurniture)
+    {
+        furniture = inFurniture;
+    }
 
 
     public Tile(Vector2DInt inLocalPosition, Vector2DInt inChunkPosition, Terrain inTerrain)
@@ -29,18 +36,6 @@ public class Tile
 
         node = new Node(this);
     }
-
-    public int DistanceTo(Tile inTargetTile)
-    {
-        int distanceX = Mathf.Abs(worldPosition.x - inTargetTile.worldPosition.x);
-        int distanceY = Mathf.Abs(worldPosition.y - inTargetTile.worldPosition.y);
-
-        return (distanceX > distanceY) ? 14 * distanceY + 10 * (distanceX - distanceY) :
-                                         14 * distanceX + 10 * (distanceY - distanceX);
-    }
-
-    public int CostBetween(Tile inTargetTile) =>
-        Mathf.RoundToInt(DistanceTo(inTargetTile) / inTargetTile.terrain.data.moveSpeedModifier);
 
     public List<Tile> GetNeighbours()
     {
@@ -58,6 +53,6 @@ public class Tile
         return neighbours;
     }
 
-    Tile GetRelativeTile(Vector2DInt inDirection) =>
-        WorldChunkManager.instance.GetTile(worldPosition + inDirection);
+    public Tile GetRelativeTile(Vector2DInt inOffset) =>
+        WorldChunkManager.instance.GetTile(worldPosition + inOffset);
 }

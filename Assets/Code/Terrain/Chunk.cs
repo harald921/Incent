@@ -17,6 +17,17 @@ public class Chunk
     }
 }
 
+public class ChunkView
+{
+    readonly GameObject terrainViewGO;
+    readonly GameObject furnitureViewGO;
+
+    public ChunkView(GameObject inTerrainViewGO, GameObject inFurnitureViewGO)
+    {
+        terrainViewGO   = inTerrainViewGO;
+        furnitureViewGO = inFurnitureViewGO;
+    }
+}
 
 public class ChunkData 
 {
@@ -34,27 +45,48 @@ public class ChunkData
     }
 
 
-    public event Action<ChunkData> OnDataDirtied;
-
+    public event Action<ChunkData> OnTilesDirtied;
+    public event Action<ChunkData> OnFurnitureDataDirtied;
 
     public ChunkData(Vector2DInt inPosition)
     {
-        position = inPosition;
+        position = inPosition;  
     }
 
-
-    public void SetTile(Vector2DInt inTileCoords, Tile inTile)
-    {
-        _tiles[inTileCoords.x, inTileCoords.y] = inTile;
-        OnDataDirtied?.Invoke(this);
-        Debug.Log("Set tile");
-    }
 
     public void SetTiles(Tile[,] inTiles)
     {
         _tiles = inTiles;
-        OnDataDirtied?.Invoke(this);
-        Debug.Log("Set tiles");
+        OnTilesDirtied?.Invoke(this);
+        Debug.Log("Setting tiles");
+    }
+
+    public void PlaceFurniture(Vector2DInt inTileCoords, Furniture inFurniture)
+    {
+        List<Tile> occupiedTiles = new List<Tile>();
+
+        Tile targetTile = _tiles[inTileCoords.x, inTileCoords.y];
+
+        for (int y = 0; y < inFurniture.size.y; y++)
+            for (int x = 0; x < inFurniture.size.x; x++)
+            {
+                Tile nearbyTile = targetTile.GetRelativeTile(new Vector2DInt(x, y));
+
+                if (nearbyTile.furniture != null) {
+                    Debug.LogError("Cannot place furniture! Tile: " + nearbyTile.worldPosition + " already has a furniture.");
+                    return;
+                }
+
+                occupiedTiles.Add(nearbyTile);
+            }
+
+        foreach (Tile occupiedTile in occupiedTiles)
+        {
+            Debug.Log("Placing furniture at " + occupiedTile.worldPosition);
+            occupiedTile.SetFurniture(inFurniture);
+        }
+
+        OnFurnitureDataDirtied?.Invoke(this);
     }
 
 
@@ -88,7 +120,7 @@ public class ChunkData
                 _tiles[x, y] = new Tile(tileLocalPosition, inPosition, tileTerrain);
             }
 
-        MultiThreader.InvokeOnMain(() => OnDataDirtied?.Invoke(this));
+        MultiThreader.InvokeOnMain(() => OnTilesDirtied?.Invoke(this));
     }
 }
 
