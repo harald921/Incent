@@ -30,8 +30,8 @@ public class Texture2DArrayWizard : ScriptableWizard
 
         // Loop over every texture and insert its data into the textureArray
         for (int i = 0; i < _inputTextures.Length; i++)
-            for (int m = 0; m < texture.mipmapCount; m++)
-                Graphics.CopyTexture(_inputTextures[i], 0, m, textureArray, i, m);
+            for (int mipLevel = 0; mipLevel < texture.mipmapCount; mipLevel++)
+                Graphics.CopyTexture(_inputTextures[i], 0, mipLevel, textureArray, i, mipLevel);
 
         // Create the textureArray as an asset
         AssetDatabase.CreateAsset(textureArray, path);

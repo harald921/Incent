@@ -235,6 +235,7 @@
     <Compile Include="Assets\Plugins\MEC\Timing.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Code\Shaders\Furniture.shader" />
     <None Include="Assets\Code\Shaders\Terrain.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,4 @@
-﻿Shader "Custom/Terrain" 
+﻿Shader "Custom/Furniture" 
 {
 	Properties 
 	{
@@ -8,10 +8,10 @@
 
 	SubShader 
 	{
-		Tags { "RenderType"="Opaque" }
+		Tags { "Queue" = "Transparent" "RenderType"="Transparent" }
 		
 		CGPROGRAM
-		#pragma surface surf Standard fullforwardshadows
+		#pragma surface surf Standard fullforwardshadows alpha:fade
 
 		#pragma target 3.5
 		
@@ -28,9 +28,10 @@
 
 		void surf (Input IN, inout SurfaceOutputStandard o) 
 		{
-			float4 color = UNITY_SAMPLE_TEX2DARRAY(_MainTex, float3(IN.worldPos.xz * 0.25, IN.uv2_IndexTex.x));
+			float4 color = UNITY_SAMPLE_TEX2DARRAY(_MainTex, float3(IN.worldPos.xz * 1, IN.uv2_IndexTex.x));
 			
 			o.Albedo	 = color.rgb;
+			o.Alpha      = color.a;
 		}
 		ENDCG
 	}

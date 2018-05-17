@@ -262,6 +262,23 @@ public class ChunkGenerator
 
             Debug.LogError("TODO: Generate furniture view");
 
+            int vertexID = 0;
+            for (int y = 0; y < _chunkSize; y++)
+            {
+                for (int x = 0; x < _chunkSize; x++)
+                {
+                    int test = Random.Range(0, 2);
+
+                    newUV2s[vertexID + 0] = new Vector2(test, test);
+                    newUV2s[vertexID + 1] = new Vector2(test, test);
+                    newUV2s[vertexID + _vertexSize + 0] = new Vector2(test, test);
+                    newUV2s[vertexID + _vertexSize + 1] = new Vector2(test, test);
+
+                    vertexID += 2;
+                }
+                vertexID += _vertexSize;
+            }
+
             return newUV2s;
         }
 
