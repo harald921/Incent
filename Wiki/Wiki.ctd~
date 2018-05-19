@@ -463,11 +463,11 @@ How proficient the character is at creating items, structures and furniture from
 			<rich_text></rich_text>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="Chunk" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286138.74" ts_lastsave="1526364078.45" unique_id="63">
 				<rich_text></rich_text>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Tiles" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286141.1" ts_lastsave="1526367707.69" unique_id="64">
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Tiles" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286141.1" ts_lastsave="1526367767.06" unique_id="64">
 					<rich_text scale="h1">Tile</rich_text>
 					<rich_text>
 
-A holds the following data:
+Is made from the following data:
 
 • </rich_text>
 					<rich_text link="node 53">Terrain</rich_text>
@@ -503,8 +503,8 @@ A holds the following data:
 			<rich_text></rich_text>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="Creatures" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526354734.05" ts_lastsave="1526354737.0" unique_id="25">
 				<rich_text></rich_text>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Inventory" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526354737.0" ts_lastsave="1526354742.54" unique_id="32">
-					<rich_text>Kenshi</rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Inventory" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526354737.0" ts_lastsave="1526746507.41" unique_id="32">
+					<rich_text>Kenshi inventory system</rich_text>
 				</node>
 			</node>
 		</node>

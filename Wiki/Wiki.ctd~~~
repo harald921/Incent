@@ -463,7 +463,7 @@ How proficient the character is at creating items, structures and furniture from
 			<rich_text></rich_text>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="Chunk" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286138.74" ts_lastsave="1526364078.45" unique_id="63">
 				<rich_text></rich_text>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Tiles" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286141.1" ts_lastsave="1526364608.89" unique_id="64">
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Tiles" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526286141.1" ts_lastsave="1526367707.69" unique_id="64">
 					<rich_text scale="h1">Tile</rich_text>
 					<rich_text>
 
@@ -472,18 +472,19 @@ A holds the following data:
 • </rich_text>
 					<rich_text link="node 53">Terrain</rich_text>
 					<rich_text> - The terrain type of the tile. Rock, dirt, sand, etc.
+ 
 • </rich_text>
 					<rich_text link="node 65">Pavement</rich_text>
 					<rich_text> - The pavement of the tile, if any. Cobblestone road, stone tiles, etc.
+ 
 • </rich_text>
 					<rich_text link="node 70">Furniture</rich_text>
 					<rich_text> - The type of furniture located on this tile, if any. Chair, bed, wall, tree.  
+
 • </rich_text>
 					<rich_text link="node 71">Items</rich_text>
-					<rich_text> - The type of items, if any, that are located on this tile.
-• </rich_text>
-					<rich_text link="node 2">Creatures</rich_text>
-					<rich_text>
+					<rich_text>  - The type of items located on this tile, if any.
+
 
 </rich_text>
 					<node custom_icon_id="0" foreground="" is_bold="False" name="Terrain" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1526364211.83" ts_lastsave="1526364213.91" unique_id="53">
