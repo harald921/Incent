@@ -235,12 +235,12 @@ public class ChunkGenerator
         public Vector2[] GenerateTerrainUV2(ChunkData inChunkData)
         {
             Vector2[] newUV2s = new Vector2[_vertexCount];
+
             int vertexID = 0;
             for (int y = 0; y < _chunkSize; y++)
             {
                 for (int x = 0; x < _chunkSize; x++)
                 {
-
                     int tileTextureID = inChunkData.GetTile(new Vector2DInt(x, y)).terrain.data.textureID;
                     
                     newUV2s[vertexID + 0] = new Vector2(tileTextureID, tileTextureID);
@@ -267,12 +267,18 @@ public class ChunkGenerator
             {
                 for (int x = 0; x < _chunkSize; x++)
                 {
-                    int test = Random.Range(0, 2);
+                    Tile currentTile = inChunkData.GetTile(new Vector2DInt(x, y));
+                    Furniture furnitureOnCurrentTile = currentTile.furniture;
 
-                    newUV2s[vertexID + 0] = new Vector2(test, test);
-                    newUV2s[vertexID + 1] = new Vector2(test, test);
-                    newUV2s[vertexID + _vertexSize + 0] = new Vector2(test, test);
-                    newUV2s[vertexID + _vertexSize + 1] = new Vector2(test, test);
+                    if (furnitureOnCurrentTile != null)
+                    {
+                        int idOfFurniturePartOnCurrentTile = furnitureOnCurrentTile.GetTextureIDFromWorldPosition(currentTile.worldPosition);
+
+                        newUV2s[vertexID               + 0] = new Vector2(idOfFurniturePartOnCurrentTile, idOfFurniturePartOnCurrentTile);
+                        newUV2s[vertexID               + 1] = new Vector2(idOfFurniturePartOnCurrentTile, idOfFurniturePartOnCurrentTile);
+                        newUV2s[vertexID + _vertexSize + 0] = new Vector2(idOfFurniturePartOnCurrentTile, idOfFurniturePartOnCurrentTile);
+                        newUV2s[vertexID + _vertexSize + 1] = new Vector2(idOfFurniturePartOnCurrentTile, idOfFurniturePartOnCurrentTile);
+                    }
 
                     vertexID += 2;
                 }

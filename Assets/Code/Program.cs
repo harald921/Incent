@@ -25,7 +25,7 @@ public class Program : MonoBehaviour
 
             Chunk targetChunk = WorldChunkManager.instance.GetTile(targetWorldPosition).chunk;
 
-            targetChunk.data.PlaceFurniture(targetWorldPosition, new Furniture(new Vector2DInt(1, 2)));
-        }
+            targetChunk.data.PlaceFurniture(WorldChunkManager.WorldPosToLocalTilePos(targetWorldPosition), new Furniture(new Vector2DInt(2, 2), targetWorldPosition)); // TODO: Bug: MEMORY LEAK IF FURNITURE CANNOT BE PLACED. 
+        }                                                                                                                                                              // Check whether or not furniture can be placed beforehand          
     }
 }

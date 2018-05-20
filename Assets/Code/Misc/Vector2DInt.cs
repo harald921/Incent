@@ -26,6 +26,16 @@ public struct Vector2DInt
     }
 
 
+    public bool IsWithinZeroAnd(Vector2DInt inOtherVector)
+    {
+        if (x > inOtherVector.x ||
+            y > inOtherVector.y ||
+            x < 0 || y < 0)
+            return false;
+
+        return true;
+    }
+
     public override string ToString() =>
         "(" + x + ", " + y + ")";
 

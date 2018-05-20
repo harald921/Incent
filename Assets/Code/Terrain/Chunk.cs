@@ -63,10 +63,9 @@ public class ChunkData
 
     public void PlaceFurniture(Vector2DInt inTileCoords, Furniture inFurniture)
     {
-        List<Tile> occupiedTiles = new List<Tile>();
-
         Tile targetTile = _tiles[inTileCoords.x, inTileCoords.y];
 
+        List<Tile> occupiedTiles = new List<Tile>();
         for (int y = 0; y < inFurniture.size.y; y++)
             for (int x = 0; x < inFurniture.size.x; x++)
             {
