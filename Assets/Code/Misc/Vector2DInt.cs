@@ -26,7 +26,7 @@ public struct Vector2DInt
     }
 
 
-    public bool IsWithinZeroAnd(Vector2DInt inOtherVector)
+    public bool IsWithinZeroAnd(Vector2DInt inOtherVector) // TODO: Change this, this is kinda ugly
     {
         if (x > inOtherVector.x ||
             y > inOtherVector.y ||

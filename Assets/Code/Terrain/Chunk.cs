@@ -65,7 +65,7 @@ public class ChunkData
     {
         Tile targetTile = _tiles[inTileCoords.x, inTileCoords.y];
 
-        List<Tile> occupiedTiles = new List<Tile>();
+        List<Tile> tilesToBeOccupied = new List<Tile>();
         for (int y = 0; y < inFurniture.size.y; y++)
             for (int x = 0; x < inFurniture.size.x; x++)
             {
@@ -76,14 +76,18 @@ public class ChunkData
                     return;
                 }
 
-                occupiedTiles.Add(nearbyTile);
+                tilesToBeOccupied.Add(nearbyTile);
             }
 
-        foreach (Tile occupiedTile in occupiedTiles)
+        foreach (Tile tileToBeOccupied in tilesToBeOccupied)
         {
-            Debug.Log("Placing furniture at " + occupiedTile.worldPosition);
-            occupiedTile.SetFurniture(inFurniture);
+            Debug.Log("Placing furniture at " + tileToBeOccupied.worldPosition);
+            tileToBeOccupied.SetFurniture(inFurniture);
         }
+
+        // Problem: OnFurnitureDataDirtied needs to be called from all chunks that get the new furniture
+        // Can be solved by ditching the OnDirtied events and simply using "bool isDirtied" which then the update takes care of
+        // Or is that lazy? I need to sleep on this 
 
         OnFurnitureDataDirtied?.Invoke(this);
     }

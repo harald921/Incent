@@ -274,10 +274,10 @@ public class ChunkGenerator
                     {
                         int idOfFurniturePartOnCurrentTile = furnitureOnCurrentTile.GetTextureIDFromWorldPosition(currentTile.worldPosition);
 
-                        newUV2s[vertexID               + 0] = new Vector2(idOfFurniturePartOnCurrentTile, idOfFurniturePartOnCurrentTile);
-                        newUV2s[vertexID               + 1] = new Vector2(idOfFurniturePartOnCurrentTile, idOfFurniturePartOnCurrentTile);
-                        newUV2s[vertexID + _vertexSize + 0] = new Vector2(idOfFurniturePartOnCurrentTile, idOfFurniturePartOnCurrentTile);
-                        newUV2s[vertexID + _vertexSize + 1] = new Vector2(idOfFurniturePartOnCurrentTile, idOfFurniturePartOnCurrentTile);
+                        newUV2s[vertexID               + 0] = new Vector2(idOfFurniturePartOnCurrentTile, 0);
+                        newUV2s[vertexID               + 1] = new Vector2(idOfFurniturePartOnCurrentTile, 0);
+                        newUV2s[vertexID + _vertexSize + 0] = new Vector2(idOfFurniturePartOnCurrentTile, 0);
+                        newUV2s[vertexID + _vertexSize + 1] = new Vector2(idOfFurniturePartOnCurrentTile, 0);
                     }
 
                     vertexID += 2;

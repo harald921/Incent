@@ -32,11 +32,6 @@ public class Furniture
         return GetTextureIDFromPart(requestedLocalPosition);
     }
 
-    public List<Tile> GetOccupiedTiles()
-    {
-
-    }
-
     int GetTextureIDFromPart(Vector2DInt inFurniturePart)
     {
         if (!inFurniturePart.IsWithinZeroAnd(size))

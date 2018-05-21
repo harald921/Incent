@@ -29,3 +29,4 @@ public class Program : MonoBehaviour
         }                                                                                                                                                              // Check whether or not furniture can be placed beforehand          
     }
 }
+
