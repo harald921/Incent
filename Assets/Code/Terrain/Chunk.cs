@@ -15,25 +15,39 @@ public class Chunk
         data = inData;
         viewGO = inViewGO;
     }
+
+
+    public void Update() =>
+        data.Update();
 }
 
 public class ChunkView
 {
-    readonly GameObject terrainViewGO;
-    readonly GameObject furnitureViewGO;
+    // readonly GameObject terrainViewGO;
+    // readonly GameObject furnitureViewGO;
+    // 
+    // public ChunkView(GameObject inTerrainViewGO, GameObject inFurnitureViewGO)
+    // {
+    //      terrainViewGO   = inTerrainViewGO;
+    //      furnitureViewGO = inFurnitureViewGO;
+    // }
+}
 
-    public ChunkView(GameObject inTerrainViewGO, GameObject inFurnitureViewGO)
-    {
-        terrainViewGO   = inTerrainViewGO;
-        furnitureViewGO = inFurnitureViewGO;
-    }
+enum DirtyFlags
+{
+    Terrain   = 1, 
+    Furniture = 2,
+    Test      = 4
 }
 
 public class ChunkData 
 {
     public readonly Vector2DInt position;
 
+    DirtyFlags _dirtyFlags;
+
     Tile[,] _tiles;
+
 
     public Tile GetTile(Vector2DInt inTileCoords) => _tiles[inTileCoords.x, inTileCoords.y];
     public Tile TGetTile(Vector2DInt inTileCoords)
@@ -45,7 +59,7 @@ public class ChunkData
     }
 
 
-    public event Action<ChunkData> OnTilesDirtied;
+    public event Action<ChunkData> OnTerrainDataDirtied;
     public event Action<ChunkData> OnFurnitureDataDirtied;
 
     public ChunkData(Vector2DInt inPosition)
@@ -53,12 +67,22 @@ public class ChunkData
         position = inPosition;  
     }
 
+    public void Update()
+    {
+        if (_dirtyFlags.HasFlag(DirtyFlags.Terrain))
+            OnTerrainDataDirtied?.Invoke(this);
+        if (_dirtyFlags.HasFlag(DirtyFlags.Furniture))
+            OnFurnitureDataDirtied?.Invoke(this);
+
+        // TODO: Finish implementing this, and see if extension methods works
+    }
+
 
     public void SetTiles(Tile[,] inTiles)
     {
         _tiles = inTiles;
-        OnTilesDirtied?.Invoke(this);
-        Debug.Log("Setting tiles");
+
+        _dirtyFlags = DirtyFlags.Terrain | DirtyFlags.Furniture | DirtyFlags.Test;
     }
 
     public void PlaceFurniture(Vector2DInt inTileCoords, Furniture inFurniture)
@@ -80,14 +104,7 @@ public class ChunkData
             }
 
         foreach (Tile tileToBeOccupied in tilesToBeOccupied)
-        {
-            Debug.Log("Placing furniture at " + tileToBeOccupied.worldPosition);
             tileToBeOccupied.SetFurniture(inFurniture);
-        }
-
-        // Problem: OnFurnitureDataDirtied needs to be called from all chunks that get the new furniture
-        // Can be solved by ditching the OnDirtied events and simply using "bool isDirtied" which then the update takes care of
-        // Or is that lazy? I need to sleep on this 
 
         OnFurnitureDataDirtied?.Invoke(this);
     }
@@ -123,7 +140,7 @@ public class ChunkData
                 _tiles[x, y] = new Tile(tileLocalPosition, inPosition, tileTerrain);
             }
 
-        MultiThreader.InvokeOnMain(() => OnTilesDirtied?.Invoke(this));
+        MultiThreader.InvokeOnMain(() => OnTerrainDataDirtied?.Invoke(this));
     }
 }
 

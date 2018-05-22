@@ -242,6 +242,7 @@
     <Compile Include="Assets\Code\Creature\Creature.cs" />
     <Compile Include="Assets\Code\Creature\CreatureMovementComponent.cs" />
     <Compile Include="Assets\Code\Creature\CreatureViewComponent.cs" />
+    <Compile Include="Assets\Code\Extensions\EnumExtensions.cs" />
     <Compile Include="Assets\Code\Extensions\FileStreamExtensions.cs" />
     <Compile Include="Assets\Code\Extensions\ListExtensions.cs" />
     <Compile Include="Assets\Code\Misc\Constants.cs" />

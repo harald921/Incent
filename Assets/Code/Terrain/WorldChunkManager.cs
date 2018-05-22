@@ -37,6 +37,13 @@ public class WorldChunkManager
     }
 
 
+    public void Update()
+    {
+        foreach (KeyValuePair<Vector2DInt, Chunk> item in _loadedChunks)
+            item.Value.Update();
+    }
+
+
     public static Vector2DInt WorldPosToChunkPos(Vector2DInt inWorldPosition) =>
         inWorldPosition / Constants.Terrain.CHUNK_SIZE;
 

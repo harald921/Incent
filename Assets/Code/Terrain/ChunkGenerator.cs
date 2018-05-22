@@ -42,16 +42,11 @@ public class ChunkGenerator
         GameObject chunkFurnitureView = _viewGenerator.GenerateBlankFurnitureView(inPosition);
 
         // Make the viewGenerator update the UV2 of the view every time the chunk's data changes
-        chunkData.OnTilesDirtied += (ChunkData dirtiedData) =>
-        {
+        chunkData.OnTerrainDataDirtied += (ChunkData dirtiedData) => 
             chunkTerrainView.GetComponent<MeshFilter>().mesh.uv2   = _viewGenerator.GenerateTerrainUV2(dirtiedData); // TODO: Getting these meshfilters before the event saves having to do it every time it's called
-            chunkFurnitureView.GetComponent<MeshFilter>().mesh.uv2 = _viewGenerator.GenerateFurnitureUV2(dirtiedData);
-        };
 
         chunkData.OnFurnitureDataDirtied += (ChunkData dirtiedData) =>
-        {
             chunkFurnitureView.GetComponent<MeshFilter>().mesh.uv2 = _viewGenerator.GenerateFurnitureUV2(dirtiedData);
-        };
 
         return new Chunk(chunkData, chunkTerrainView);
     }
