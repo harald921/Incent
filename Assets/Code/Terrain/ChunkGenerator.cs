@@ -147,6 +147,7 @@ public class ChunkGenerator
         public GameObject GenerateBlankFurnitureView(Vector2DInt inPosition)
         {
             GameObject viewGO = GenerateBlank(inPosition);
+            viewGO.transform.position = viewGO.transform.position + Vector3.up;
             viewGO.GetComponent<MeshRenderer>().material = _chunkFurnitureMaterial;
             return viewGO;
         }

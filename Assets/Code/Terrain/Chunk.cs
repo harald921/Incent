@@ -33,18 +33,11 @@ public class ChunkView
     // }
 }
 
-enum DirtyFlags
-{
-    Terrain   = 1, 
-    Furniture = 2,
-    Test      = 4
-}
-
 public class ChunkData 
 {
     public readonly Vector2DInt position;
 
-    DirtyFlags _dirtyFlags;
+    ChunkDirtyFlags _dirtyFlags;
 
     Tile[,] _tiles;
 
@@ -69,12 +62,17 @@ public class ChunkData
 
     public void Update()
     {
-        if (_dirtyFlags.HasFlag(DirtyFlags.Terrain))
+        if (_dirtyFlags.HasFlag(ChunkDirtyFlags.Terrain))
+        {
             OnTerrainDataDirtied?.Invoke(this);
-        if (_dirtyFlags.HasFlag(DirtyFlags.Furniture))
-            OnFurnitureDataDirtied?.Invoke(this);
+            _dirtyFlags.Remove(ChunkDirtyFlags.Terrain, ref _dirtyFlags);
+        }
 
-        // TODO: Finish implementing this, and see if extension methods works
+        if (_dirtyFlags.HasFlag(ChunkDirtyFlags.Furniture))
+        {
+            OnFurnitureDataDirtied?.Invoke(this);
+            _dirtyFlags.Remove(ChunkDirtyFlags.Furniture, ref _dirtyFlags);
+        }
     }
 
 
@@ -82,7 +80,7 @@ public class ChunkData
     {
         _tiles = inTiles;
 
-        _dirtyFlags = DirtyFlags.Terrain | DirtyFlags.Furniture | DirtyFlags.Test;
+        _dirtyFlags = ChunkDirtyFlags.Terrain | ChunkDirtyFlags.Furniture;
     }
 
     public void PlaceFurniture(Vector2DInt inTileCoords, Furniture inFurniture)
@@ -104,9 +102,10 @@ public class ChunkData
             }
 
         foreach (Tile tileToBeOccupied in tilesToBeOccupied)
+        {
             tileToBeOccupied.SetFurniture(inFurniture);
-
-        OnFurnitureDataDirtied?.Invoke(this);
+            tileToBeOccupied.chunk.data._dirtyFlags.Add(ChunkDirtyFlags.Furniture, ref tileToBeOccupied.chunk.data._dirtyFlags);
+        }
     }
 
 
@@ -128,7 +127,7 @@ public class ChunkData
 
         // Create tile array
         int chunkSize = Constants.Terrain.CHUNK_SIZE;
-        _tiles = new Tile[chunkSize, chunkSize];
+        SetTiles(new Tile[chunkSize, chunkSize]);
         
         // Load all tiles from disk
         for (int y = 0; y < chunkSize; y++)
@@ -140,7 +139,14 @@ public class ChunkData
                 _tiles[x, y] = new Tile(tileLocalPosition, inPosition, tileTerrain);
             }
 
+        
         MultiThreader.InvokeOnMain(() => OnTerrainDataDirtied?.Invoke(this));
     }
+}
+
+public enum ChunkDirtyFlags
+{
+    Terrain = 1,
+    Furniture = 2,
 }
 
