@@ -8,12 +8,12 @@ using System.Threading;
 public class Chunk
 {
     public readonly ChunkData data;
-    public readonly GameObject viewGO;
+    public readonly ChunkView view;
 
-    public Chunk(ChunkData inData, GameObject inViewGO)
+    public Chunk(ChunkData inData, ChunkView inView)
     {
         data = inData;
-        viewGO = inViewGO;
+        view = inView;
     }
 
 
@@ -23,14 +23,20 @@ public class Chunk
 
 public class ChunkView
 {
-    // readonly GameObject terrainViewGO;
-    // readonly GameObject furnitureViewGO;
-    // 
-    // public ChunkView(GameObject inTerrainViewGO, GameObject inFurnitureViewGO)
-    // {
-    //      terrainViewGO   = inTerrainViewGO;
-    //      furnitureViewGO = inFurnitureViewGO;
-    // }
+    readonly GameObject terrainViewGO;
+    readonly GameObject furnitureViewGO;
+    
+    public ChunkView(GameObject inTerrainViewGO, GameObject inFurnitureViewGO)
+    {
+         terrainViewGO   = inTerrainViewGO;
+         furnitureViewGO = inFurnitureViewGO;
+    }
+
+    public void Destroy()
+    {
+        UnityEngine.Object.Destroy(terrainViewGO);
+        UnityEngine.Object.Destroy(furnitureViewGO);
+    }
 }
 
 public class ChunkData 
@@ -83,6 +89,7 @@ public class ChunkData
         _dirtyFlags = ChunkDirtyFlags.Terrain | ChunkDirtyFlags.Furniture;
     }
 
+
     public void PlaceFurniture(Vector2DInt inTileCoords, Furniture inFurniture)
     {
         Tile targetTile = _tiles[inTileCoords.x, inTileCoords.y];
@@ -109,16 +116,27 @@ public class ChunkData
     }
 
 
-    public void BinarySave()
+    public void WriteToDisk()
     {
         FileStream stream = File.OpenWrite(Constants.Terrain.CHUNK_SAVE_FOLDER + "\\" + position.ToString() + ".chunk");
         BinaryWriter writer = new BinaryWriter(stream);
 
+        HashSet<Furniture> furnituresToSave = new HashSet<Furniture>();
+
         foreach (Tile tile in _tiles)
-            writer.Write((UInt16)tile.terrain.type);
+        {
+            writer.Write((UInt16)tile.terrain.type);                    // Write: Terrain type
+
+            if (tile.furniture != null)
+                furnituresToSave.Add(tile.furniture);
+        }
+
+        writer.Write(furnituresToSave.Count);                           // Write: Furniture count
+        foreach (Furniture furnitureToSave in furnituresToSave)
+            furnitureToSave.BinarySave(writer);                         // Write: Furniture
     }
 
-    public void BinaryLoad(Vector2DInt inPosition)
+    public void LoadFromDisk(Vector2DInt inPosition)
     {
         // Open chunk save file
         string chunkFilePath = Constants.Terrain.CHUNK_SAVE_FOLDER + "\\" + inPosition.ToString() + ".chunk";
@@ -134,11 +152,17 @@ public class ChunkData
             for (int x = 0; x < chunkSize; x++)
             {
                 Vector2DInt tileLocalPosition = new Vector2DInt(x, y);
-                Terrain tileTerrain = new Terrain((TerrainType)reader.ReadUInt16());
+                Terrain tileTerrain = new Terrain((TerrainType)reader.ReadUInt16()); // Read: Terrain type
         
                 _tiles[x, y] = new Tile(tileLocalPosition, inPosition, tileTerrain);
             }
 
+        int numFurnitures = reader.ReadInt32();                                      // Read: Furniture count
+        for (int i = 0; i < numFurnitures; i++)
+        {
+            Furniture loadedFurniture = new Furniture(reader);                       // Read: Furniture
+            PlaceFurniture(loadedFurniture.position, loadedFurniture); // TODO: Make a check that it's actually possible to place a furniture here, just in case
+        }
         
         MultiThreader.InvokeOnMain(() => OnTerrainDataDirtied?.Invoke(this));
     }

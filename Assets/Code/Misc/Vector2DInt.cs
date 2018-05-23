@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
-public struct Vector2DInt
+public struct Vector2DInt : IBinarySerializable
 {
     public int x, y;
 
@@ -34,6 +35,19 @@ public struct Vector2DInt
             return false;
 
         return true;
+    }
+
+
+    public void BinarySave(BinaryWriter inWriter)
+    {
+        inWriter.Write(x);
+        inWriter.Write(y);
+    }
+
+    public void BinaryLoad(BinaryReader inReader)
+    {
+        x = inReader.ReadInt32();
+        y = inReader.ReadInt32();
     }
 
     public override string ToString() =>
@@ -108,4 +122,5 @@ public struct Vector2DInt
     public static bool operator !=(Vector2DInt inVector1, Vector2DInt inVector2) =>
         inVector1.x != inVector2.x ||
         inVector1.y != inVector2.y;
+
 }

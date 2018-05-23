@@ -1,25 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
-public class Furniture 
+public class Furniture : IBinarySerializable
 {
     public readonly Vector2DInt size;
-    readonly Vector2DInt _position;
+    public readonly Vector2DInt position;
 
 
     public Furniture(Vector2DInt inSize, Vector2DInt inWorldPosition)
     {
         size = inSize;
-        _position = inWorldPosition;
+        position = inWorldPosition;
     }
 
+    public Furniture(BinaryReader inReader)
+    {
+        BinaryLoad(inReader);
+    }
 
     public int GetTextureIDFromWorldPosition(Vector2DInt inWorldPosition)
     {
         Vector2DInt requestedLocalPosition = new Vector2DInt() {
-            x = inWorldPosition.x - _position.x,
-            y = inWorldPosition.y - _position.y
+            x = inWorldPosition.x - position.x,
+            y = inWorldPosition.y - position.y
         };
 
 
@@ -42,6 +47,25 @@ public class Furniture
 
         return 1; // TODO: Change this for a lookup against a static collection of exmple furniture or smth
     }
+
+
+    public void BinarySave(BinaryWriter inWriter)
+    {
+        size.BinarySave(inWriter);
+        position.BinarySave(inWriter);
+    }
+
+    public void BinaryLoad(BinaryReader inReader)
+    {
+        size.BinaryLoad(inReader);
+        position.BinaryLoad(inReader);
+    }
 }
 
 
+public interface IBinarySerializable
+{
+    void BinarySave(BinaryWriter inWriter);
+
+    void BinaryLoad(BinaryReader inReader);
+}

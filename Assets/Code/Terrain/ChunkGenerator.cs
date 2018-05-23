@@ -35,7 +35,7 @@ public class ChunkGenerator
     {
         // Create chunkdata and begin load from disk on a separate thread
         ChunkData  chunkData = new ChunkData(inPosition);
-        new System.Threading.Thread(() => chunkData.BinaryLoad(inPosition)).Start();
+        new System.Threading.Thread(() => chunkData.LoadFromDisk(inPosition)).Start();
 
         // Create blank chunk view
         GameObject chunkTerrainView   = _viewGenerator.GenerateBlankTerrainView(inPosition);
@@ -46,15 +46,17 @@ public class ChunkGenerator
             chunkTerrainView.GetComponent<MeshFilter>().mesh.uv2   = _viewGenerator.GenerateTerrainUV2(dirtiedData); // TODO: Getting these meshfilters before the event saves having to do it every time it's called
 
         chunkData.OnFurnitureDataDirtied += (ChunkData dirtiedData) =>
-            chunkFurnitureView.GetComponent<MeshFilter>().mesh.uv2 = _viewGenerator.GenerateFurnitureUV2(dirtiedData);
+            chunkFurnitureView.GetComponent<MeshFilter>().mesh.uv2 = _viewGenerator.GenerateFurnitureUV2(dirtiedData); // TODO: Getting these meshfilters before the event saves having to do it every time it's called
 
-        return new Chunk(chunkData, chunkTerrainView);
+        ChunkView chunkView = new ChunkView(chunkTerrainView, chunkFurnitureView);
+
+        return new Chunk(chunkData, chunkView);
     }
 
     public void UnloadChunk(Chunk inChunk)
     {
         Debug.Log("TODO: Make destroyed chunks save to disk");
-        Object.Destroy(inChunk.viewGO);
+        inChunk.view.Destroy();
     }
 
     class DataGenerator
@@ -75,7 +77,7 @@ public class ChunkGenerator
 
             newChunkData.SetTiles(GenerateTiles(inPosition, GenerateNoiseMap(inPosition)));
 
-            newChunkData.BinarySave();
+            newChunkData.WriteToDisk();
         }
 
         Noise.Parameters[] LoadNoiseParameters()
@@ -255,8 +257,6 @@ public class ChunkGenerator
         public Vector2[] GenerateFurnitureUV2(ChunkData inChunkData)
         {
             Vector2[] newUV2s = new Vector2[_vertexCount];
-
-            Debug.LogError("TODO: Generate furniture view");
 
             int vertexID = 0;
             for (int y = 0; y < _chunkSize; y++)
