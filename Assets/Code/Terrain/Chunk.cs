@@ -115,6 +115,12 @@ public class ChunkData
         }
     }
 
+    public void PlaceFurniture(Vector2DInt inTileCoords, Furniture inFurniture)
+    {
+
+    }
+
+
 
     public void WriteToDisk()
     {
@@ -174,6 +180,5 @@ public enum ChunkDirtyFlags
     Furniture = 2,
 }
 
-// Make every chunk that is deloaded save all furniture
 // When a chunk is loaded and a furniture is to be placed, check if there's a furniture there already. If there is, take _that_ furniture and overwrite it with itself to force a tilemap update
 // When a chunk is loaded and a furniture is to be placed, and some of the furniture tiles are outside the chunk, let it be placed anyway (unless the tiles outside are outside the entire map)
