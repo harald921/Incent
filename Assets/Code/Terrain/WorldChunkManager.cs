@@ -43,6 +43,17 @@ public class WorldChunkManager
             item.Value.Update();
     }
 
+    public void PlaceFurniture(Vector2DInt inTargetTilePosition, Furniture inFurniture)
+    {
+        for (int y = 0; y < inFurniture.size.y; y++)
+            for (int x = 0; x < inFurniture.size.x; x++)
+            {
+                Vector2DInt currentTilePosition = inTargetTilePosition + new Vector2DInt(x, y);
+                GetTile(currentTilePosition)?.SetFurniture(inFurniture);
+            }
+    }
+
+    
 
     public static Vector2DInt WorldPosToChunkPos(Vector2DInt inWorldPosition) =>
         inWorldPosition / Constants.Terrain.CHUNK_SIZE;
@@ -68,7 +79,7 @@ public class WorldChunkManager
     {
         if (inWorldPosition.x < 0 || inWorldPosition.y < 0)
         {
-            Debug.LogError("GetTile() tried to access a negative world position");
+            // Debug.LogError("GetTile() tried to access a negative world position");
             return null;
         }
 
@@ -77,7 +88,7 @@ public class WorldChunkManager
 
         if (!_loadedChunks.ContainsKey(chunkPosition))
         {
-            Debug.LogError("GetTile() tried to access a chunk that doesn't exist");
+            // Debug.LogError("GetTile() tried to access a chunk that doesn't exist");
             return null;
         }
 

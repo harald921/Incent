@@ -20,10 +20,6 @@ public class Tile
     Chunk _chunk;
 
 
-    public void SetFurniture(Furniture inFurniture)
-    {
-        furniture = inFurniture;
-    }
 
 
     public Tile(Vector2DInt inLocalPosition, Vector2DInt inChunkPosition, Terrain inTerrain)
@@ -55,4 +51,11 @@ public class Tile
 
     public Tile GetRelativeTile(Vector2DInt inOffset) =>
         WorldChunkManager.instance.GetTile(worldPosition + inOffset);
+
+
+    public void SetFurniture(Furniture inFurniture)
+    {
+        furniture = inFurniture;
+        chunk.data.AddDirtyFlag(ChunkDirtyFlags.Furniture);
+    }
 }

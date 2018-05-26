@@ -245,6 +245,7 @@
     <Compile Include="Assets\Code\Extensions\EnumExtensions.cs" />
     <Compile Include="Assets\Code\Extensions\FileStreamExtensions.cs" />
     <Compile Include="Assets\Code\Extensions\ListExtensions.cs" />
+    <Compile Include="Assets\Code\IBinarySerializable.cs" />
     <Compile Include="Assets\Code\Misc\Constants.cs" />
     <Compile Include="Assets\Code\Misc\MultiThreader.cs" />
     <Compile Include="Assets\Code\Misc\Vector2DInt.cs" />

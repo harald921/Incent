@@ -42,7 +42,6 @@ public class CreatureMovementComponent
             Tile previousTile = currentTile;
             currentTile = tile;
 
-
             if (previousTile.chunk != tile.chunk)
                 OnChunkEnter?.Invoke(tile.chunk);
 

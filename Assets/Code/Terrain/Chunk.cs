@@ -44,17 +44,19 @@ public class ChunkData
     public readonly Vector2DInt position;
 
     ChunkDirtyFlags _dirtyFlags;
+    public void AddDirtyFlag(ChunkDirtyFlags inChunkDirtyFlagsToAdd) =>
+        _dirtyFlags.Add(inChunkDirtyFlagsToAdd, ref _dirtyFlags);
 
     Tile[,] _tiles;
 
 
-    public Tile GetTile(Vector2DInt inTileCoords) => _tiles[inTileCoords.x, inTileCoords.y];
-    public Tile TGetTile(Vector2DInt inTileCoords)
+    public Tile GetTile(Vector2DInt inLocalTilePosition) => _tiles[inLocalTilePosition.x, inLocalTilePosition.y];
+    public Tile TGetTile(Vector2DInt inLocalTilePosition)
     {
         while (_tiles == null)
             Thread.Sleep(5);
 
-        return GetTile(inTileCoords);
+        return GetTile(inLocalTilePosition);
     }
 
 
@@ -90,38 +92,6 @@ public class ChunkData
     }
 
 
-    public void PlaceFurniture(Vector2DInt inTileCoords, Furniture inFurniture)
-    {
-        Tile targetTile = _tiles[inTileCoords.x, inTileCoords.y];
-
-        List<Tile> tilesToBeOccupied = new List<Tile>();
-        for (int y = 0; y < inFurniture.size.y; y++)
-            for (int x = 0; x < inFurniture.size.x; x++)
-            {
-                Tile nearbyTile = targetTile.GetRelativeTile(new Vector2DInt(x, y));
-
-                if (nearbyTile.furniture != null) {
-                    Debug.LogError("Cannot place furniture! Tile: " + nearbyTile.worldPosition + " already has a furniture.");
-                    return;
-                }
-
-                tilesToBeOccupied.Add(nearbyTile);
-            }
-
-        foreach (Tile tileToBeOccupied in tilesToBeOccupied)
-        {
-            tileToBeOccupied.SetFurniture(inFurniture);
-            tileToBeOccupied.chunk.data._dirtyFlags.Add(ChunkDirtyFlags.Furniture, ref tileToBeOccupied.chunk.data._dirtyFlags);
-        }
-    }
-
-    public void PlaceFurniture(Vector2DInt inTileCoords, Furniture inFurniture)
-    {
-
-    }
-
-
-
     public void WriteToDisk()
     {
         FileStream stream = File.OpenWrite(Constants.Terrain.CHUNK_SAVE_FOLDER + "\\" + position.ToString() + ".chunk");
@@ -134,18 +104,23 @@ public class ChunkData
             writer.Write((UInt16)tile.terrain.type);                    // Write: Terrain type
 
             if (tile.furniture != null)
+            {
                 furnituresToSave.Add(tile.furniture);
+            }
+
         }
 
         writer.Write(furnituresToSave.Count);                           // Write: Furniture count
         foreach (Furniture furnitureToSave in furnituresToSave)
             furnitureToSave.BinarySave(writer);                         // Write: Furniture
+
+        stream.Close();
     }
 
-    public void LoadFromDisk(Vector2DInt inPosition)
+    public void LoadFromDisk(Vector2DInt inChunkPosition)
     {
         // Open chunk save file
-        string chunkFilePath = Constants.Terrain.CHUNK_SAVE_FOLDER + "\\" + inPosition.ToString() + ".chunk";
+        string chunkFilePath = Constants.Terrain.CHUNK_SAVE_FOLDER + "\\" + inChunkPosition.ToString() + ".chunk";
         FileStream stream = FileStreamExtensions.LoadAndWaitUntilLoaded(chunkFilePath, FileMode.Open); 
         BinaryReader reader = new BinaryReader(stream);
 
@@ -160,17 +135,19 @@ public class ChunkData
                 Vector2DInt tileLocalPosition = new Vector2DInt(x, y);
                 Terrain tileTerrain = new Terrain((TerrainType)reader.ReadUInt16()); // Read: Terrain type
         
-                _tiles[x, y] = new Tile(tileLocalPosition, inPosition, tileTerrain);
+                _tiles[x, y] = new Tile(tileLocalPosition, inChunkPosition, tileTerrain);
             }
 
         int numFurnitures = reader.ReadInt32();                                      // Read: Furniture count
         for (int i = 0; i < numFurnitures; i++)
         {
             Furniture loadedFurniture = new Furniture(reader);                       // Read: Furniture
-            PlaceFurniture(loadedFurniture.position, loadedFurniture); // TODO: Make a check that it's actually possible to place a furniture here, just in case
+            WorldChunkManager.instance.PlaceFurniture(loadedFurniture.position, loadedFurniture);
         }
-        
-        MultiThreader.InvokeOnMain(() => OnTerrainDataDirtied?.Invoke(this));
+
+        MultiThreader.InvokeOnMain(() => _dirtyFlags.Add(ChunkDirtyFlags.Terrain, ref _dirtyFlags));
+
+        stream.Close();
     }
 }
 
@@ -180,5 +157,3 @@ public enum ChunkDirtyFlags
     Furniture = 2,
 }
 
-// When a chunk is loaded and a furniture is to be placed, check if there's a furniture there already. If there is, take _that_ furniture and overwrite it with itself to force a tilemap update
-// When a chunk is loaded and a furniture is to be placed, and some of the furniture tiles are outside the chunk, let it be placed anyway (unless the tiles outside are outside the entire map)

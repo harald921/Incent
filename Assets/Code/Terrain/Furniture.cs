@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class Furniture : IBinarySerializable
+public class Furniture 
 {
-    public readonly Vector2DInt size;
-    public readonly Vector2DInt position;
+    Vector2DInt _size;
+    public Vector2DInt size => _size;
+
+    Vector2DInt _position;
+    public Vector2DInt position => _position;
 
 
     public Furniture(Vector2DInt inSize, Vector2DInt inWorldPosition)
     {
-        size = inSize;
-        position = inWorldPosition;
+        _size = inSize;
+        _position = inWorldPosition;
     }
 
     public Furniture(BinaryReader inReader)
@@ -20,26 +23,26 @@ public class Furniture : IBinarySerializable
         BinaryLoad(inReader);
     }
 
+
     public int GetTextureIDFromWorldPosition(Vector2DInt inWorldPosition)
     {
-        Vector2DInt requestedLocalPosition = new Vector2DInt() {
-            x = inWorldPosition.x - position.x,
-            y = inWorldPosition.y - position.y
+        Vector2DInt targetPartPosition = new Vector2DInt() {
+            x = inWorldPosition.x - _position.x,
+            y = inWorldPosition.y - _position.y
         };
 
-
-        if (!requestedLocalPosition.IsWithinZeroAnd(size))
+        if (!targetPartPosition.IsWithinZeroAnd(_size))
         {
             Debug.LogError("Tried getting part of furniture that is outside of the furniture");
             return 0;
         }
 
-        return GetTextureIDFromPart(requestedLocalPosition);
+        return GetTextureIDFromPart(targetPartPosition);
     }
 
     int GetTextureIDFromPart(Vector2DInt inFurniturePart)
     {
-        if (!inFurniturePart.IsWithinZeroAnd(size))
+        if (!inFurniturePart.IsWithinZeroAnd(_size))
         {
             Debug.LogError("Tried getting part of furniture that is outside of the furniture");
             return 0;
@@ -51,21 +54,15 @@ public class Furniture : IBinarySerializable
 
     public void BinarySave(BinaryWriter inWriter)
     {
-        size.BinarySave(inWriter);
-        position.BinarySave(inWriter);
+        _size.BinarySave(inWriter);
+        _position.BinarySave(inWriter);
     }
 
     public void BinaryLoad(BinaryReader inReader)
     {
-        size.BinaryLoad(inReader);
-        position.BinaryLoad(inReader);
+        _size.BinaryLoad(inReader);
+        _position.BinaryLoad(inReader);
     }
 }
 
 
-public interface IBinarySerializable
-{
-    void BinarySave(BinaryWriter inWriter);
-
-    void BinaryLoad(BinaryReader inReader);
-}

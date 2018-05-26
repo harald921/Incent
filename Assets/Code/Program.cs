@@ -27,10 +27,8 @@ public class Program : MonoBehaviour
             Vector3     mouseWorldPosition  = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2DInt targetWorldPosition = new Vector2DInt((int)mouseWorldPosition.x, (int)mouseWorldPosition.z);
 
-            Chunk targetChunk = WorldChunkManager.instance.GetTile(targetWorldPosition).chunk;
-
-            targetChunk.data.PlaceFurniture(WorldChunkManager.WorldPosToLocalTilePos(targetWorldPosition), new Furniture(new Vector2DInt(2, 2), targetWorldPosition)); 
-        }                                                                                                                                                                      
+            WorldChunkManager.instance.PlaceFurniture(targetWorldPosition, new Furniture(new Vector2DInt(2, 2), targetWorldPosition)); 
+        }
     }
 }
 

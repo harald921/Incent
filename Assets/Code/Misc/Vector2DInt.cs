@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-public struct Vector2DInt : IBinarySerializable
+public struct Vector2DInt 
 {
     public int x, y;
 
@@ -26,6 +26,11 @@ public struct Vector2DInt : IBinarySerializable
         y = inY;
     }
 
+    public void SetXandYto100()
+    {
+        x = 100;
+        y = 100;
+    }
 
     public bool IsWithinZeroAnd(Vector2DInt inOtherVector) // TODO: Change this, this is kinda ugly
     {
@@ -122,5 +127,4 @@ public struct Vector2DInt : IBinarySerializable
     public static bool operator !=(Vector2DInt inVector1, Vector2DInt inVector2) =>
         inVector1.x != inVector2.x ||
         inVector1.y != inVector2.y;
-
 }

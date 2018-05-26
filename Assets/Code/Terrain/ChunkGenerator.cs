@@ -55,7 +55,7 @@ public class ChunkGenerator
 
     public void UnloadChunk(Chunk inChunk)
     {
-        Debug.Log("TODO: Make destroyed chunks save to disk");
+        inChunk.data.WriteToDisk();
         inChunk.view.Destroy();
     }
 

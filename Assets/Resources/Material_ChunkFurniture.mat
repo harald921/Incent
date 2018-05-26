@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Material_ChunkTerrain
-  m_Shader: {fileID: 4800000, guid: c32094d0c5792cb4db61f8a7b2638576, type: 3}
+  m_Name: Material_ChunkFurniture
+  m_Shader: {fileID: 4800000, guid: 1d63fdd8e44d14f448fc6c572b330ca3, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -38,8 +38,12 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _IndexTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 18700000, guid: 602ebab51bca057429e8f8bcaf645cb3, type: 2}
+        m_Texture: {fileID: 18700000, guid: 10d2be48474550a4db0a3e08a99736dd, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex2:
