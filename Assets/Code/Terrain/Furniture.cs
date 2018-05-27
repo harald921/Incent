@@ -64,5 +64,3 @@ public class Furniture
         _position.BinaryLoad(inReader);
     }
 }
-
-

@@ -25,11 +25,11 @@ public class ChunkView
 {
     readonly GameObject terrainViewGO;
     readonly GameObject furnitureViewGO;
-    
+
     public ChunkView(GameObject inTerrainViewGO, GameObject inFurnitureViewGO)
     {
-         terrainViewGO   = inTerrainViewGO;
-         furnitureViewGO = inFurnitureViewGO;
+        terrainViewGO = inTerrainViewGO;
+        furnitureViewGO = inFurnitureViewGO;
     }
 
     public void Destroy()
@@ -39,7 +39,7 @@ public class ChunkView
     }
 }
 
-public class ChunkData 
+public class ChunkData
 {
     public readonly Vector2DInt position;
 
@@ -65,7 +65,7 @@ public class ChunkData
 
     public ChunkData(Vector2DInt inPosition)
     {
-        position = inPosition;  
+        position = inPosition;
     }
 
     public void Update()
@@ -94,60 +94,64 @@ public class ChunkData
 
     public void WriteToDisk()
     {
-        FileStream stream = File.OpenWrite(Constants.Terrain.CHUNK_SAVE_FOLDER + "\\" + position.ToString() + ".chunk");
-        BinaryWriter writer = new BinaryWriter(stream);
-
-        HashSet<Furniture> furnituresToSave = new HashSet<Furniture>();
-
-        foreach (Tile tile in _tiles)
+        using (FileStream stream = File.OpenWrite(Constants.Terrain.CHUNK_SAVE_FOLDER + "\\" + position.ToString() + ".chunk"))
+        using (BinaryWriter writer = new BinaryWriter(stream))
         {
-            writer.Write((UInt16)tile.terrain.type);                    // Write: Terrain type
 
-            if (tile.furniture != null)
+            HashSet<Furniture> furnituresToSave = new HashSet<Furniture>();
+
+            foreach (Tile tile in _tiles)
             {
-                furnituresToSave.Add(tile.furniture);
+                writer.Write((UInt16)tile.terrain.type);                    // Write: Terrain type
+
+                if (tile.furniture != null)
+                {
+                    furnituresToSave.Add(tile.furniture);
+                }
+
             }
 
+            writer.Write(furnituresToSave.Count);                           // Write: Furniture count
+            foreach (Furniture furnitureToSave in furnituresToSave)
+                furnitureToSave.BinarySave(writer);                         // Write: Furniture
+
         }
-
-        writer.Write(furnituresToSave.Count);                           // Write: Furniture count
-        foreach (Furniture furnitureToSave in furnituresToSave)
-            furnitureToSave.BinarySave(writer);                         // Write: Furniture
-
-        stream.Close();
     }
 
     public void LoadFromDisk(Vector2DInt inChunkPosition)
     {
         // Open chunk save file
         string chunkFilePath = Constants.Terrain.CHUNK_SAVE_FOLDER + "\\" + inChunkPosition.ToString() + ".chunk";
-        FileStream stream = FileStreamExtensions.LoadAndWaitUntilLoaded(chunkFilePath, FileMode.Open); 
-        BinaryReader reader = new BinaryReader(stream);
 
-        // Create tile array
-        int chunkSize = Constants.Terrain.CHUNK_SIZE;
-        SetTiles(new Tile[chunkSize, chunkSize]);
-        
-        // Load all tiles from disk
-        for (int y = 0; y < chunkSize; y++)
-            for (int x = 0; x < chunkSize; x++)
-            {
-                Vector2DInt tileLocalPosition = new Vector2DInt(x, y);
-                Terrain tileTerrain = new Terrain((TerrainType)reader.ReadUInt16()); // Read: Terrain type
-        
-                _tiles[x, y] = new Tile(tileLocalPosition, inChunkPosition, tileTerrain);
-            }
-
-        int numFurnitures = reader.ReadInt32();                                      // Read: Furniture count
-        for (int i = 0; i < numFurnitures; i++)
+        using (FileStream stream = FileStreamExtensions.LoadAndWaitUntilLoaded(chunkFilePath, FileMode.Open))
+        using (BinaryReader reader = new BinaryReader(stream))
         {
-            Furniture loadedFurniture = new Furniture(reader);                       // Read: Furniture
-            WorldChunkManager.instance.PlaceFurniture(loadedFurniture.position, loadedFurniture);
+            // Create tile array
+            int chunkSize = Constants.Terrain.CHUNK_SIZE;
+            SetTiles(new Tile[chunkSize, chunkSize]);
+
+            // Load all tiles from disk
+            for (int y = 0; y < chunkSize; y++)
+                for (int x = 0; x < chunkSize; x++)
+                {
+                    Vector2DInt tileLocalPosition = new Vector2DInt(x, y);
+                    Terrain tileTerrain = new Terrain((TerrainType)reader.ReadUInt16()); // Read: Terrain type
+
+                    _tiles[x, y] = new Tile(tileLocalPosition, inChunkPosition, tileTerrain);
+                }
+
+            // Load and place all furnitures
+            int numFurnitures = reader.ReadInt32();                                      // Read: Furniture count
+            for (int i = 0; i < numFurnitures; i++)
+            {
+                Furniture loadedFurniture = new Furniture(reader);                       // Read: Furniture
+
+                // TODO: Check if there's a furniture within the target area. If so, take that one and place it on itself.
+                WorldChunkManager.instance.PlaceFurniture(loadedFurniture.position, loadedFurniture);
+            }
+            
+            MultiThreader.InvokeOnMain(() => _dirtyFlags.Add(ChunkDirtyFlags.Terrain, ref _dirtyFlags));
         }
-
-        MultiThreader.InvokeOnMain(() => _dirtyFlags.Add(ChunkDirtyFlags.Terrain, ref _dirtyFlags));
-
-        stream.Close();
     }
 }
 
