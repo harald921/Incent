@@ -50,6 +50,8 @@ public class WorldChunkManager
             {
                 Vector2DInt currentTilePosition = inTargetTilePosition + new Vector2DInt(x, y);
                 GetTile(currentTilePosition)?.SetFurniture(inFurniture);
+
+                // TODO: If this is false, check what chunk it's supposed to belong to. Save down a queue of furnitures to place belonging to that chunk.
             }
     }
 

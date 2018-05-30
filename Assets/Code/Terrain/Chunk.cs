@@ -150,6 +150,8 @@ public class ChunkData
                 WorldChunkManager.instance.PlaceFurniture(loadedFurniture.position, loadedFurniture);
             }
             
+            // TODO: Load the queue of all the furnitures that should be replaced. The queue should just hold furniture type and position. Get the furniture at the saved position and save it on top of itself
+
             MultiThreader.InvokeOnMain(() => _dirtyFlags.Add(ChunkDirtyFlags.Terrain, ref _dirtyFlags));
         }
     }
