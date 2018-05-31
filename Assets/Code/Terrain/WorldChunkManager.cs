@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Responsible for holding all the loaded chunks
 public class WorldChunkManager 
 {
     public static WorldChunkManager instance { get; private set; }
@@ -16,7 +15,7 @@ public class WorldChunkManager
     {
         instance = this;
 
-        chunkGenerator = new ChunkGenerator(); // TODO: Read from file
+        chunkGenerator = new ChunkGenerator(); 
 
         chunkGenerator.GenerateWorld();
 

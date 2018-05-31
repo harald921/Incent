@@ -114,7 +114,6 @@ public class ChunkData
             writer.Write(furnituresToSave.Count);                           // Write: Furniture count
             foreach (Furniture furnitureToSave in furnituresToSave)
                 furnitureToSave.BinarySave(writer);                         // Write: Furniture
-
         }
     }
 
