@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Incent", "Incent.csproj", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Incent.Plugins", "Incent.Plugins.csproj", "{7F2CCC82-9F99-321D-4FA0-9C09F4E85D59}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Incent.Editor", "Incent.Editor.csproj", "{73E94BE6-FFAD-1ABB-ED2F-EBC2EBB87BBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Incent.Editor", "Incent.Editor.csproj", "{73E94BE6-FFAD-1ABB-ED2F-EBC2EBB87BBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +23,14 @@ Global
 		{7F2CCC82-9F99-321D-4FA0-9C09F4E85D59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F2CCC82-9F99-321D-4FA0-9C09F4E85D59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F2CCC82-9F99-321D-4FA0-9C09F4E85D59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73E94BE6-FFAD-1ABB-ED2F-EBC2EBB87BBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73E94BE6-FFAD-1ABB-ED2F-EBC2EBB87BBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73E94BE6-FFAD-1ABB-ED2F-EBC2EBB87BBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73E94BE6-FFAD-1ABB-ED2F-EBC2EBB87BBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73E94BE6-FFAD-1ABB-ED2F-EBC2EBB87BBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73E94BE6-FFAD-1ABB-ED2F-EBC2EBB87BBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73E94BE6-FFAD-1ABB-ED2F-EBC2EBB87BBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73E94BE6-FFAD-1ABB-ED2F-EBC2EBB87BBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
