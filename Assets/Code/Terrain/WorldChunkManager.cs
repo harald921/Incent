@@ -44,14 +44,29 @@ public class WorldChunkManager
 
     public void PlaceFurniture(Vector2DInt inTargetTilePosition, Furniture inFurniture)
     {
+        HashSet<Vector2DInt> chunkPositionsWithQueuedFurniturePlacements = new HashSet<Vector2DInt>();
+
         for (int y = 0; y < inFurniture.size.y; y++)
             for (int x = 0; x < inFurniture.size.x; x++)
             {
                 Vector2DInt currentTilePosition = inTargetTilePosition + new Vector2DInt(x, y);
-                GetTile(currentTilePosition)?.SetFurniture(inFurniture);
+                Tile currentTile = GetTile(currentTilePosition);
 
-                // TODO: If this is false, check what chunk it's supposed to belong to. Save down a queue of furnitures to place belonging to that chunk.
+                currentTile?.SetFurniture(inFurniture);
+
+                if (currentTile == null)
+                {
+                    Vector2DInt currentTileChunkPos = WorldPosToChunkPos(currentTilePosition);
+
+                    if (ChunkPositionIsWithinWorld(currentTileChunkPos))
+                        chunkPositionsWithQueuedFurniturePlacements.Add(currentTileChunkPos);
+                }
             }
+
+        foreach (Vector2DInt chunkPosition in chunkPositionsWithQueuedFurniturePlacements)
+        {
+            // Write the queue to disk, for each chunkPosition. If one already exist, simply add to it. Actually, that could result in things being placed on top of eachother. That's no good. I probably need to re-think this. Wait, can't I just.. not allow furniture to be placed on borders?
+        }
     }
 
     
