@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +10,6 @@ public class WorldChunkManager
     public ChunkGenerator chunkGenerator { get; private set; }
 
     Dictionary<Vector2DInt, Chunk> _loadedChunks = new Dictionary<Vector2DInt, Chunk>();
-
 
     public WorldChunkManager()
     {
@@ -42,31 +42,26 @@ public class WorldChunkManager
             item.Value.Update();
     }
 
+    public bool CanPlaceFurniture(Vector2DInt inTargetTilePosition, Furniture inFurniture)
+    {
+        // This method could return an enum value which describes the reason why something couldn't be placed
+
+        throw new NotImplementedException("TODO: Implement this method");
+    }
+
     public void PlaceFurniture(Vector2DInt inTargetTilePosition, Furniture inFurniture)
     {
-        HashSet<Vector2DInt> chunkPositionsWithQueuedFurniturePlacements = new HashSet<Vector2DInt>();
-
         for (int y = 0; y < inFurniture.size.y; y++)
             for (int x = 0; x < inFurniture.size.x; x++)
             {
                 Vector2DInt currentTilePosition = inTargetTilePosition + new Vector2DInt(x, y);
                 Tile currentTile = GetTile(currentTilePosition);
 
-                currentTile?.SetFurniture(inFurniture);
-
                 if (currentTile == null)
-                {
-                    Vector2DInt currentTileChunkPos = WorldPosToChunkPos(currentTilePosition);
+                    throw new MissingReferenceException("One of the tiles the furniture tried to be placed on was null");
 
-                    if (ChunkPositionIsWithinWorld(currentTileChunkPos))
-                        chunkPositionsWithQueuedFurniturePlacements.Add(currentTileChunkPos);
-                }
+                currentTile.SetFurniture(inFurniture);
             }
-
-        foreach (Vector2DInt chunkPosition in chunkPositionsWithQueuedFurniturePlacements)
-        {
-            // Write the queue to disk, for each chunkPosition. If one already exist, simply add to it. Actually, that could result in things being placed on top of eachother. That's no good. I probably need to re-think this. Wait, can't I just.. not allow furniture to be placed on borders?
-        }
     }
 
     
