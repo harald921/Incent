@@ -46,7 +46,16 @@ public class WorldChunkManager
     {
         // This method could return an enum value which describes the reason why something couldn't be placed
 
-        throw new NotImplementedException("TODO: Implement this method");
+        for (int y = 0; y < inFurniture.size.y; y++)
+            for (int x = 0; x < inFurniture.size.x; x++)
+            {
+                Vector2DInt currentTilePosition = inTargetTilePosition + new Vector2DInt(x, y);
+
+                if (GetTile(currentTilePosition) == null)
+                    return false;
+            }
+
+        return true;
     }
 
     public void PlaceFurniture(Vector2DInt inTargetTilePosition, Furniture inFurniture)
@@ -59,12 +68,10 @@ public class WorldChunkManager
 
                 if (currentTile == null)
                     throw new MissingReferenceException("One of the tiles the furniture tried to be placed on was null");
-
+                
                 currentTile.SetFurniture(inFurniture);
             }
     }
-
-    
 
     public static Vector2DInt WorldPosToChunkPos(Vector2DInt inWorldPosition) =>
         inWorldPosition / Constants.Terrain.CHUNK_SIZE;
